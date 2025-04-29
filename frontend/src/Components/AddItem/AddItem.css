@@ -1,0 +1,154 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* Sidebar Layout */
+.inventory-details-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px; /* Sidebar width */
+    height: 100vh;
+    background-color: #345e38;
+    color: white;
+    padding-top: 40px;
+    font-family: 'Arial', sans-serif;
+    box-shadow: 2px 0 5px #345e38;
+}
+
+/* Content Area */
+.dashboard-container-form {
+    margin-left: 250px; /* Align content to the right of the sidebar */
+    padding: 20px;
+    background-color: #f8f9fa;
+    min-height: 100vh;
+    overflow-y: auto;
+}
+
+/* Main Content Container */
+.inventoryFormContainer {
+    display: flex;
+    justify-content: center; /* Centers the content horizontally */
+    align-items: center;     /* Centers the content vertically */
+    height: 100vh;           /* Full height of the viewport */
+    flex-direction: column;  /* Align content in a column direction */
+    padding: 20px;
+}
+
+/* Form Container */
+.add-item-container {
+    width: 100%;  /* Form container takes full width */
+    max-width: 500px;  /* Limit max width of the form */
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading */
+h1 {
+    text-align: center;
+    color: #388e3c;
+    margin-bottom: 20px;
+}
+
+/* Form Styles */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Label Styles */
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+/* Input & Select Styles */
+input, select {
+    padding: 12px;  /* Padding for better spacing */
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    outline: none;
+    transition: 0.3s ease-in-out;
+    width: 100%;  /* Ensure inputs take up full width */
+}
+
+/* Focused Input Styling */
+input:focus, select:focus {
+    border-color: #007bff;
+    box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Button Styles */
+button {
+    padding: 14px 20px;  /* Adjust padding for better click area */
+    font-size: 18px;      /* Larger font size for readability */
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    width: 100%;  /* Make buttons take full width */
+}
+
+/* Submit Button */
+button[type="submit"] {
+    background-color: #28a745;
+    color: white;
+}
+
+button[type="submit"]:hover {
+    background-color: #218838;
+}
+
+/* PDF Button */
+.pdf-button {
+    background-color: #007bff;
+    color: white;
+    margin-top: 20px;  /* Space between the two buttons */
+}
+
+.pdf-button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    /* Sidebar Adjustments for Mobile */
+    .inventory-details-sidebar {
+        position: static;
+        width: 100%;
+        height: auto;
+    }
+
+    /* Content Area Adjustments */
+    .inventory-details-content-area {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    /* Form container adjustments */
+    .add-item-container {
+        width: 90%;  /* Make the form container more flexible on small screens */
+        max-width: 400px;  /* Restrict max width for smaller screens */
+    }
+
+    /* Adjust padding and font sizes for smaller screens */
+    input, select {
+        font-size: 14px; /* Slightly smaller font size for mobile */
+    }
+
+    button {
+        font-size: 14px;  /* Adjust button font size */
+        padding: 12px;  /* Increase button padding on mobile */
+    }
+}

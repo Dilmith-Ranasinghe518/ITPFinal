@@ -1,0 +1,207 @@
+/* Main Container */
+.ot-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background: #f5f8ff;
+  min-height: 100vh;
+}
+
+/* Header Section */
+.ot-header {
+  margin-bottom: 20px;
+}
+
+.ot-header h2 {
+  font-size: 26px;
+  color: #1e293b;
+  margin-bottom: 15px;
+}
+
+.ot-back-btn {
+  background: #cbd5e1;
+  padding: 8px 14px;
+  margin-bottom: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 6px;
+  transition: background-color 0.3s;
+}
+
+.ot-back-btn:hover {
+  background: #94a3b8;
+}
+
+/* Search Row */
+.ot-search-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.ot-search-input {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  flex: 1;
+  min-width: 220px;
+}
+
+.ot-search-btn,
+.ot-download-btn,
+.ot-export-btn {
+  padding: 8px 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.ot-search-btn {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.ot-search-btn:hover {
+  background-color: #2563eb;
+}
+
+.ot-download-btn {
+  background-color: #6366f1;
+  color: white;
+}
+
+.ot-download-btn:hover {
+  background-color: #4f46e5;
+}
+
+.ot-export-btn {
+  background-color: #22c55e;
+  color: white;
+}
+
+.ot-export-btn:hover {
+  background-color: #16a34a;
+}
+
+/* Table */
+.ot-table-scroll {
+  overflow-x: auto;
+}
+
+.ot-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.ot-table th {
+  background-color: #3b82f6;
+  color: white;
+  padding: 12px;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.ot-table td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+/* Action Buttons */
+.ot-actions button {
+  margin: 0 3px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* Approve/Reject/Delete Button Colors */
+.approve-btn {
+  background-color: #10b981;
+  color: white;
+}
+
+.approve-btn:hover {
+  background-color: #059669;
+}
+
+.reject-btn {
+  background-color: #ef4444;
+  color: white;
+}
+
+.reject-btn:hover {
+  background-color: #dc2626;
+}
+
+.delete-btn {
+  background-color: #f87171;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #f43f5e;
+}
+
+/* Status Text Only (No background) */
+.badge {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.badge-pending {
+  color: #f59e0b; /* Orange */
+  animation: blinkingText 1.5s infinite;
+}
+
+.badge-approved {
+  color: #10b981; /* Green */
+}
+
+.badge-rejected {
+  color: #ef4444; /* Red */
+}
+
+/* Blinking Animation */
+@keyframes blinkingText {
+  0% { opacity: 1; }
+  50% { opacity: 0.2; }
+  100% { opacity: 1; }
+}
+
+/* Success Message */
+.ot-success-message {
+  margin-top: 1rem;
+  background: #d1fae5;
+  color: #065f46;
+  padding: 1rem;
+  border-radius: 8px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Empty Message */
+.ot-empty {
+  text-align: center;
+  padding: 20px;
+  font-style: italic;
+  color: #6b7280;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .ot-search-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

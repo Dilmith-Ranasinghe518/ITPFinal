@@ -1,0 +1,87 @@
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Header Styles */
+.header-unique {
+    padding: 15px;
+    background: #fff;
+}
+
+/* Navigation Styles */
+.nav-unique {
+    font-size: 14px;
+}
+
+/* Hero Section */
+.hero-unique {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 50px;
+    background: white;
+}
+
+/* Content Section */
+.content-unique {
+    max-width: 600px;
+}
+
+/* Heading Styles */
+.hero-title {
+    color: #003366;
+    font-size: 50px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Paragraph Styles */
+.hero-p {
+    color: #090909;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+/* Button Styles */
+.quote-btn-unique {
+    background: #008000;
+    color: white;
+    padding: 15px 25px;
+    margin: 10px;
+    border: 1px solid #008000;
+    cursor: pointer;
+    border-radius: 10px;
+    font-weight: 780;
+}
+
+.call-btn-unique {
+    background: #ffffff;
+    color: rgb(0, 74, 202);
+    padding: 15px 25px;
+    margin: 10px;
+    border: 1px solid rgb(0, 74, 202);
+    cursor: pointer;
+    border-radius: 10px;
+    font-weight: 780;
+}
+
+.help-btn-unique {
+    background: #ffffff;
+    color: black;
+    padding: 15px 25px;
+    margin: 10px;
+    border: 1px solid rgb(255, 255, 255);
+    cursor: pointer;
+    border-radius: 10px;
+    font-weight: 1000;
+}
+
+/* Image Container */
+.image-container-unique img {
+    max-width: 600px;
+    border-radius: 10px;
+}

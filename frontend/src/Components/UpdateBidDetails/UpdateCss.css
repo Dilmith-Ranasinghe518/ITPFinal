@@ -1,0 +1,107 @@
+/* Unique class for the container of the UpdateBidDetails form */
+.update-bid-container-unique {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 60px auto;
+    background-color: #ffffff;
+    transition: all 0.3s ease-in-out;
+    border: 1px solid #e0e0e0;
+  }
+  
+  /* Hover effect on the container */
+  .update-bid-container-unique:hover {
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+    transform: translateY(-6px);
+  }
+  
+  /* Unique title styling */
+  .update-bid-title-unique {
+    text-align: center;
+    color: #4CAF50;
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+  }
+  
+  /* Label styling for inputs */
+  .update-bid-label-unique {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 10px;
+    display: block;
+    font-weight: 600;
+  }
+  
+  /* Select and Input Fields Styling */
+  .update-bid-select-unique,
+  .update-bid-input-unique {
+    width: 100%;
+    padding: 14px;
+    margin: 15px 0;
+    border: 2px solid #d1d1d1;
+    border-radius: 10px;
+    font-size: 1rem;
+    color: #333;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease;
+  }
+  
+  /* Focus effect for select and input fields */
+  .update-bid-select-unique:focus,
+  .update-bid-input-unique:focus {
+    outline: none;
+    border-color: #4CAF50;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.2);
+  }
+  
+  /* Submit Button Styling */
+  .update-bid-submit-btn-unique {
+    width: 100%;
+    padding: 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  /* Hover effect for the submit button */
+  .update-bid-submit-btn-unique:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+  }
+  
+  /* Responsive Design for Smaller Screens */
+  @media screen and (max-width: 600px) {
+    .update-bid-container-unique {
+      padding: 25px;
+      max-width: 90%;
+    }
+  
+    .update-bid-title-unique {
+      font-size: 2rem;
+    }
+  
+    .update-bid-label-unique {
+      font-size: 1rem;
+    }
+  
+    .update-bid-select-unique,
+    .update-bid-input-unique {
+      font-size: 1rem;
+    }
+  
+    .update-bid-submit-btn-unique {
+      font-size: 1rem;
+    }
+  }
+  

@@ -1,0 +1,127 @@
+.salary-page {
+  padding: 30px;
+  background: #f5f8ff;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.salary-header-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.back-btn {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 8px;
+  font-size: 16px;
+  width: 150px;
+  cursor: pointer;
+}
+
+.back-btn:hover {
+  background-color: #5a6268;
+}
+
+.salary-top-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.salary-search-input {
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 250px;
+}
+
+.salary-search-btn,
+.download-btn,
+.export-btn {
+  padding: 8px 14px;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  border: none;
+  transition: 0.3s;
+}
+
+.salary-search-btn {
+  background-color: #007bff;
+  color: white;
+}
+
+.salary-search-btn:hover {
+  background-color: #0062cc;
+}
+
+.download-btn {
+  background-color: #28a745;
+  color: white;
+}
+
+.download-btn:hover {
+  background-color: #218838;
+}
+
+.export-btn {
+  background-color: #ffc107;
+  color: #333;
+}
+
+.export-btn:hover {
+  background-color: #e0a800;
+}
+
+.salary-details-container {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+}
+
+.salary-details-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.salary-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.salary-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.salary-item label {
+  margin-bottom: 6px;
+  font-weight: bold;
+  color: #555;
+}
+
+.salary-item input,
+.salary-item select {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.salary-total {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.salary-total h2 {
+  color: #007bff;
+  font-size: 28px;
+}

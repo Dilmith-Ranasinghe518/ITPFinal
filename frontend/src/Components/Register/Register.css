@@ -1,0 +1,97 @@
+/* Register page styling */
+.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f9f9f9;
+  }
+  
+  .register-card {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    text-align: center;
+  }
+  
+  .register-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #4CAF50;
+    margin-bottom: 20px;
+  }
+  
+  .register-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-label {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 5px;
+    text-align: left;
+  }
+  
+  .form-input, .form-select {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-top: 5px;
+  }
+  
+  .form-input::placeholder, .form-select {
+    color: #aaa;
+  }
+  
+  .form-submit-btn {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 12px 0;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .form-submit-btn:hover {
+    background-color: #45a049;
+  }
+  
+  .form-submit-btn:focus {
+    outline: none;
+  }
+  .already-have-account {
+    font-size: 14px;
+    margin-top: 15px;
+  }
+  
+  .login-link {
+    color: #4CAF50;
+    text-decoration: none;
+  }
+  
+  .login-link:hover {
+    text-decoration: underline;
+  }
+  /* Responsive design for small screens */
+  @media (max-width: 768px) {
+    .register-card {
+      width: 90%;
+      padding: 20px;
+    }
+  
+    .register-title {
+      font-size: 24px;
+    }
+  }
+  

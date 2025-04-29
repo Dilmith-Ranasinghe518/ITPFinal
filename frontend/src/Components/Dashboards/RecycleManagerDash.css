@@ -1,0 +1,37 @@
+/* styles.css or global CSS */
+.navbar {
+  display: flex;
+  justify-content: center; /* Horizontally center the links */
+  align-items: center; /* Vertically align the links */
+  background: linear-gradient(to right, #4CAF50, #388E3C);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar ul {
+  display: flex;
+  list-style-type: none;
+  gap: 1.5rem; /* Adds space between list items */
+}
+
+.navbar a {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.navbar a:hover {
+  color: #a5d6a7;
+}
+
+/* Dash.css */
+
+.card {
+background: rgba(255, 255, 255, 0.8); /* semi-transparent white */
+padding: 1rem; /* equivalent to p-4 */
+border-radius: 1rem; /* equivalent to rounded-2xl */
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* equivalent to shadow-md */
+}
+

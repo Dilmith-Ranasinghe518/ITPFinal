@@ -1,0 +1,93 @@
+/* Container Styles */
+.bid-container2 {
+  background-color: #f0f8ff; /* Light blue background */
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 255, 0, 0.2); 
+  max-width: 90%;
+  margin: 20px auto;
+}
+
+/* Header Styles */
+.bid-header2 {
+  color: #28a745;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+/* Table Styles */
+.bid-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #e6f7e1; /*soft green*/
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.bid-table th, .bid-table td {
+  border: 1px solid #b0c4de;
+  padding: 12px 15px;
+  text-align: center;
+}
+
+.bid-table th {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.bid-table td {
+  color: #333;
+}
+
+/* Dropdown Styles */
+.status-dropdown {
+  padding: 6px 10px;
+  border: 2px solid #28a745;
+  border-radius: 6px;
+  background-color: #e6f7e1;
+  color: #28a745;
+  outline: none;
+  cursor: pointer;
+}
+
+/* Input and Button Styles */
+.reason-input {
+  padding: 6px 10px;
+  border: 2px solid #007bff;
+  border-radius: 6px;
+  background-color: #f0f8ff;
+  width: 100%;
+}
+
+.update-button-1 {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.update-button:hover {
+  background-color: #c82333;
+}
+
+/* Error and Loading Text Styles */
+.error-message {
+  color: #ff4d4d;
+  background-color: #ffe6e6;
+  padding: 10px;
+  border: 1px solid #ff4d4d;
+  border-radius: 6px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.loading-text {
+  text-align: center;
+  color: #28a745;
+  font-weight: bold;
+}

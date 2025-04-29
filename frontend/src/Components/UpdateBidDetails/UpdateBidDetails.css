@@ -1,0 +1,82 @@
+/* Import Cinzel (for a classical style) */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
+
+/* Import Lobster (for a playful script style) */
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+
+
+/* Full-screen background style */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Full screen height */
+    /* background-image: 
+      linear-gradient(rgba(173, 216, 230, 0.7), rgba(148, 223, 144, 0.7)), 
+      url("C:/Users/Kaveesha/Desktop/Kaveesha (3)/Kaveesha/Kaveesha/frontend/public/j2.jpeg"); */
+    background-size: cover; /* Cover the whole screen */
+    background-position: center; /* Center the background */
+    background-repeat: no-repeat; /* Prevent repetition */
+
+   
+    font-family: 'Cinzel', serif; /* Optional: custom font */
+}
+
+  
+  /* General container styles for the form */
+  .update-bid-container {
+    background-color: rgba(134, 206, 139, 0.8); /* Semi-transparent background to see the image through */
+    padding: 30px;
+    max-width: 600px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    animation: fadeIn 0.5s ease-in-out;
+    color: rgb(0, 0, 0); /* Text color to ensure readability */
+    width: 100%; /* Ensures form container doesn't overflow */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    display:flex;
+  }
+  
+  /* Fade-in animation */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Form styling */
+  .update-bid-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-label {
+    margin-bottom: 5px;
+  }
+  
+  .form-select, .form-input, .form-submit-btn-update {
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    background-color: #f5f5f5;
+  }
+  
+  .form-submit-btn-update {
+    background-color: #086600;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .form-submit-btn-update:hover {
+    background-color: #2edb13;
+  }
+  

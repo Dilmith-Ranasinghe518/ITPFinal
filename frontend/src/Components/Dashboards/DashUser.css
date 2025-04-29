@@ -1,0 +1,99 @@
+/* Navigation Styles */
+.recycler-dash-nav {
+  background-color: #2c6b2f;
+  padding: 1rem;
+}
+
+.recycler-dash-nav-list {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  list-style-type: none;
+}
+
+.recycler-dash-nav-list li {
+  margin: 0 20px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.5s ease;
+}
+
+/* Animation delay for list items */
+.recycler-dash-nav-list li:nth-child(1) {
+  transition-delay: 0.1s;
+}
+
+.recycler-dash-nav-list li:nth-child(2) {
+  transition-delay: 0.2s;
+}
+
+.recycler-dash-nav-list li:nth-child(3) {
+  transition-delay: 0.3s;
+}
+
+/* Link Styling */
+.recycler-dash-nav-link {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.recycler-dash-nav-link:hover {
+  color: #ddd;
+}
+
+/* Main Dashboard Styles */
+.recycler-dash-container {
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.recycler-dash-main-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.recycler-dash-title {
+  font-size: 3rem;
+  font-weight: 600;
+  color: #2e7d32;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.recycler-dash-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.recycler-dash-card {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.recycler-dash-card-title {
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.recycler-dash-card-value {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #2e7d32;
+}
+
+/* Footer Styling */
+.recycler-dash-footer {
+  background-color: #2c6b2f;
+  padding: 1rem;
+  text-align: center;
+  color: white;
+  margin-top: 2rem;
+}

@@ -1,0 +1,55 @@
+/* NavRecyCustom.css */
+
+/* Navbar Background */
+.navrecy-navbar {
+    background: linear-gradient(90deg, #4caf50, #43a047); /* Smooth green gradient */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Container */
+  .navrecy-container {
+    padding: 0 20px;
+  }
+  
+  /* Brand (Home Link) */
+  .navrecy-brand {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #ffffff;
+  }
+  
+  /* Toggler Button */
+  .navrecy-toggler {
+    border: none;
+  }
+  
+  /* Navigation Links */
+  .navrecy-links {
+    background: transparent; /* ✅ Remove black background */
+  }
+  
+  /* Nav Items */
+  .navrecy-links .nav-item {
+    margin-left: 15px;
+  }
+  
+  /* Nav Links */
+  .navrecy-link {
+    color: #ffffff !important;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+  
+  /* Hover effect for nav links */
+  .navrecy-link:hover {
+    color: #c1e1c1 !important; /* Light green on hover */
+    text-decoration: underline; /* Small underline effect */
+  }
+  
+  /* Optional: Active link */
+  .navrecy-link.active {
+    font-weight: bold;
+    color: #ffd700 !important; /* Golden color */
+  }
+  

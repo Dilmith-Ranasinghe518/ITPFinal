@@ -1,0 +1,105 @@
+/* Container for the Item */
+.item-container {
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Table Styles */
+.item-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.item-table th, .item-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.item-table th {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+}
+
+.item-table tr:hover {
+    background-color: #f5f5f5;
+}
+
+/* Item Details Styles */
+.item-container h1 {
+    font-size: 18px;
+    color: #333;
+    margin: 8px 0;
+}
+
+/* Button Container */
+.button-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* Update Button */
+.update-btn {
+    padding: 10px 15px;
+    background-color: #28a745;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    text-decoration: none;
+}
+
+.update-btn:hover {
+    background-color: #218838;
+}
+
+/* Delete Button */
+.delete-btn {
+    padding: 10px 15px;
+    background-color: #dc3545;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .item-container {
+        width: 90%;
+    }
+
+    .item-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .button-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .update-btn, .delete-btn {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+}

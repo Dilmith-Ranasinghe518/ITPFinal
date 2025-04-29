@@ -1,0 +1,120 @@
+.leave-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(to bottom right, #e6f0ff, #ffffff);
+    padding: 20px;
+}
+
+.leave-card {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 550px;
+}
+
+.leave-title {
+    text-align: center;
+    color: #444;
+    margin-bottom: 25px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    color: #666;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.input-group input,
+.input-group select,
+.input-group textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    transition: border-color 0.3s;
+}
+
+.input-group input:focus,
+.input-group select:focus,
+.input-group textarea:focus {
+    border-color: #3a7afe;
+    outline: none;
+    box-shadow: 0 0 6px rgba(58, 122, 254, 0.3);
+}
+
+.date-group {
+    display: flex;
+    gap: 20px;
+}
+
+.date-group .input-group {
+    flex: 1;
+}
+
+.date-group .input-group input[type="date"] {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+
+.btn-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.btn-primary, .btn-secondary {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.btn-primary {
+    background-color: #3a7afe;
+    color: white;
+}
+
+.btn-secondary {
+    background-color: #f44336;
+    color: white;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+    opacity: 0.8;
+}
+.blinking {
+    animation: blinkingText 1.2s infinite;
+  }
+  
+  @keyframes blinkingText {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  
+  /* Optional: Color styles */
+  .status-pending {
+    color: orange;
+    font-weight: bold;
+  }
+  .status-approved {
+    color: green;
+    font-weight: bold;
+  }
+  .status-rejected {
+    color: red;
+    font-weight: bold;
+  }
+  

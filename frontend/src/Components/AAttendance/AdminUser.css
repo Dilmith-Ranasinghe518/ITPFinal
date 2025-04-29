@@ -1,0 +1,264 @@
+/* Main container */
+.att-container {
+  padding: 20px;
+  background: linear-gradient(to bottom right, #f0f4f8, #d9e2ec);
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Header row */
+.att-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+.att-title {
+  font-size: 28px;
+  font-weight: bold;
+  color: #1e293b;
+}
+
+/* Back Button */
+.att-back-btn {
+  background-color: #cbd5e1;
+  color: #1e293b;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.att-back-btn:hover {
+  background-color: #94a3b8;
+}
+
+/* Header Controls */
+.att-header-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.att-controls-left {
+  flex: 1;
+}
+
+.att-controls-right {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Add Attendance Button */
+.att-add-btn {
+  background: linear-gradient(to right, #6366f1, #4338ca);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.att-add-btn:hover {
+  background: linear-gradient(to right, #4f46e5, #3730a3);
+}
+
+/* Search Field */
+.att-search {
+  padding: 8px 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  width: 230px;
+}
+
+/* Search & Download Buttons */
+.att-btn-search,
+.att-btn-download,
+.att-btn-export {
+  padding: 9px 16px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.att-btn-search {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.att-btn-search:hover {
+  background-color: #2563eb;
+}
+
+.att-btn-download {
+  background-color: #10b981;
+  color: white;
+}
+
+.att-btn-download:hover {
+  background-color: #059669;
+}
+
+.att-btn-export {
+  background-color: #f97316;
+  color: white;
+}
+
+.att-btn-export:hover {
+  background-color: #ea580c;
+}
+
+/* Download dropdown */
+.att-download-dropdown {
+  position: relative;
+}
+
+.att-dropdown-options {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  z-index: 100;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.att-dropdown-options button {
+  padding: 10px 20px;
+  background: none;
+  border: none;
+  text-align: left;
+  width: 100%;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.att-dropdown-options button:hover {
+  background-color: #f1f5f9;
+}
+
+/* Table Section */
+.att-table-section {
+  overflow-x: auto;
+  background-color: white;
+  padding: 10px;
+  border-radius: 12px;
+  box-shadow: 0px 8px 20px rgba(0,0,0,0.08);
+}
+
+/* Table */
+.att-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.att-table th,
+.att-table td {
+  padding: 12px 16px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.att-table th {
+  background-color: #1e40af;
+  color: white;
+  font-weight: bold;
+}
+
+.att-table td {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.att-table tr:hover {
+  background-color: #f1f5f9;
+}
+
+/* Status */
+.status-active {
+  color: green;
+  font-weight: bold;
+}
+
+.status-leave {
+  color: red;
+  font-weight: bold;
+}
+
+/* Actions (Edit & Delete) */
+.att-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.att-edit-btn,
+.att-delete-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.att-edit-btn {
+  color: #3b82f6;
+}
+
+.att-edit-btn:hover {
+  color: #1d4ed8;
+}
+
+.att-delete-btn {
+  color: #ef4444;
+}
+
+.att-delete-btn:hover {
+  color: #dc2626;
+}
+
+/* No Data */
+.no-data {
+  text-align: center;
+  padding: 20px;
+  font-style: italic;
+  color: #6b7280;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .att-header-row,
+  .att-header-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .att-controls-right {
+    justify-content: center;
+  }
+
+  .att-table th,
+  .att-table td {
+    font-size: 12px;
+    padding: 8px 10px;
+  }
+}

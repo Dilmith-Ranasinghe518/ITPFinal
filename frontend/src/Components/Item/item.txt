@@ -1,0 +1,45 @@
+import React, { useState, useEffect, useRef } from "react";
+import Nav from '../Nav/Nav'
+import axios from "axios";
+import Item from '../Item/Item';
+
+
+const URL = "http://localhost:5000/inventory";
+
+const fetchHandler = async () => {
+  return await axios.get(URL).then((res) => res.data );
+}
+
+
+
+function InventoryDetails() {
+   
+    const [inventory, setInventoryDetails] = useState();
+    useEffect(()=> {
+      fetchHandler().then((data) => setInventoryDetails(data.inventory));
+    },[])
+
+  return (
+    <div>
+      <Nav/>
+      <h1>Inventory Details Page</h1>
+         <div>
+
+           {inventory && inventory.map((inventorys,i)=> (
+             <div key={i}>
+                <Item inventorys={inventorys}/>
+
+                </div>
+         
+           ))}
+
+           </div>
+         
+
+
+
+    </div>
+  )
+}
+
+export default InventoryDetails

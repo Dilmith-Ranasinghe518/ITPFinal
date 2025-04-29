@@ -1,0 +1,193 @@
+/* ReqBidForm.css */
+.btn-1-req{
+    width: 100%;
+    padding: 15px;
+    background-color: #48bb48;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(102, 187, 106, 0.5);
+
+}
+
+/* General Styles */
+.add-bid-form {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 40px;
+    background-color: #f0fff4;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 100, 0, 0.2);
+    font-family: 'Roboto', sans-serif;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #4CAF50, #2E7D32);
+}
+
+.add-bid-form::before {
+    pointer-events: none;
+    content: '';
+    position: absolute;
+    top: -200px;
+    left: -200px;
+    width: 600px;
+    height: 600px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    animation: pulseEffect 8s linear infinite;
+}
+
+@keyframes pulseEffect {
+    0% { transform: scale(0.8); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(0.8); }
+}
+
+.add-bid-form h2 {
+    text-align: center;
+    color: #ffffff;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+/* Error Message */
+.error-message {
+    background-color: #d32f2f;
+    color: #fff;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: bold;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Form Styles */
+.bid-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.bid-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+    color: #ffffff;
+    font-weight: 500;
+}
+
+/* Uniform Textbox Styling */
+.bid-form input,
+.bid-form textarea {
+    width: 100%;
+    max-width: 100%;
+    height: 50px;
+    padding: 10px 15px;
+    border: 2px solid #4CAF50;
+    border-radius: 8px;
+    outline: none;
+    background-color: #f5fff5;
+    color: #333;
+    box-sizing: border-box;
+}
+
+/* Focus Effect */
+.bid-form input:focus,
+.bid-form textarea:focus {
+    border-color: #2E7D32;
+    background-color: #e8f5e9;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+/* Textarea Height */
+.bid-form textarea {
+    height: 150px;
+    resize: none;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield; /* Remove number spinner */
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Button Styles */
+.button {
+    width: 100%;
+    padding: 15px;
+    background-color: #48bb48;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(102, 187, 106, 0.5);
+}
+
+.button:hover {
+    background-color: #43a047;
+    box-shadow: 0 5px 20px rgba(67, 160, 71, 0.7);
+    transform: translateY(-3px);
+}
+
+button[type="submit"]:disabled {
+    background-color: #a5d6a7;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .add-bid-form {
+        padding: 20px;
+    }
+
+    .bid-form {
+        gap: 18px;
+    }
+
+    .bid-form input,
+    .bid-form textarea {
+        font-size: 1rem;
+    }
+
+    button[type="submit"] {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .add-bid-form {
+        padding: 15px;
+    }
+
+    .bid-form {
+        gap: 15px;
+    }
+
+    .bid-form input,
+    .bid-form textarea {
+        font-size: 0.95rem;
+    }
+
+    button[type="submit"] {
+        font-size: 0.95rem;
+    }
+}

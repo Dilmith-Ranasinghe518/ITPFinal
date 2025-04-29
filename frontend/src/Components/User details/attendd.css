@@ -1,0 +1,198 @@
+/* ========== Global Reset ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ========== Container Layout ========== */
+.attendance-container {
+  display: flex;
+  min-height: 100vh;
+  background: #f5f7fa;
+}
+
+/* ========== Sidebar ========== */
+.sidebar {
+  width: 250px;
+  background: #1e293b;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.user-logo {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.user-logo img.logo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+.sidebar-buttons, .sidebar-footer {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.sidebar-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  text-align: left;
+  padding: 0.8rem 1rem;
+  margin: 0.5rem 0;
+  cursor: pointer;
+  transition: background 0.3s;
+  border-radius: 8px;
+}
+
+.sidebar-btn:hover,
+.sidebar-btn.active {
+  background: #475569;
+}
+
+.logout-btn {
+  margin-top: 1rem;
+  background: #ef4444;
+}
+
+.logout-btn:hover {
+  background: #dc2626;
+}
+
+/* ========== Main Content ========== */
+.attendance-main-content {
+  flex: 1;
+  padding: 2rem;
+  background: #f1f5f9;
+  overflow-x: auto;
+}
+
+/* ========== Top Controls ========== */
+.attendance-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  align-items: center;
+}
+
+.attendance-controls input[type="text"] {
+  padding: 0.5rem 1rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  width: 250px;
+}
+
+.attendance-btn,
+.action-btn {
+  padding: 0.5rem 1.2rem;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.attendance-btn:hover,
+.action-btn:hover {
+  background-color: #2563eb;
+}
+
+.leave-btn {
+  background-color: #10b981;
+}
+
+.leave-btn:hover {
+  background-color: #059669;
+}
+
+.overtime-btn {
+  background-color: #f59e0b;
+}
+
+.overtime-btn:hover {
+  background-color: #d97706;
+}
+
+/* ========== Table ========== */
+.table-container {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
+}
+
+.attendance-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.attendance-table thead {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.attendance-table th,
+.attendance-table td {
+  padding: 1rem;
+  text-align: center;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 0.95rem;
+}
+
+.attendance-table tbody tr:hover {
+  background-color: #f9fafb;
+}
+
+/* ========== Status Styling ========== */
+.status-pending {
+  color: orange;
+  font-weight: bold;
+}
+
+.status-approved {
+  color: green;
+  font-weight: bold;
+}
+
+.status-rejected {
+  color: red;
+  font-weight: bold;
+}
+
+/* ========== Blinking Animation for Pending ========== */
+.blinking {
+  animation: blinkingText 1.2s infinite;
+}
+
+@keyframes blinkingText {
+  0% { opacity: 1; }
+  50% { opacity: 0.2; }
+  100% { opacity: 1; }
+}
+
+/* ========== Responsive ========== */
+@media (max-width: 768px) {
+  .attendance-controls {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .sidebar {
+    width: 200px;
+  }
+
+  .attendance-main-content {
+    padding: 1rem;
+  }
+}

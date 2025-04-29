@@ -1,0 +1,31 @@
+/* Nav.css */
+.home-ul {
+    list-style-type: none; /* Remove default list styling */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    display: flex; /* Align items horizontally */
+    justify-content: space-around; /* Add space between items */
+    background-color: white; /* Set a background color */
+    padding: 10px 0; /* Add padding to the navbar */
+  }
+  
+  .home-li {
+    font-size: 1.2rem; /* Set the font size */
+    font-family: Arial, sans-serif; /* Use a clean font */
+    color: white; /* Set text color */
+    text-align: center; /* Center-align text */
+    cursor: pointer; /* Change cursor to pointer for interactivity */
+    transition: color 0.3s, transform 0.3s; /* Add transition for hover effects */
+  }
+  
+  .home-li:hover {
+    color: #3498db; /* Change color on hover */
+    transform: scale(1.1); /* Slightly enlarge the item on hover */
+  }
+  
+  .home-li h1 {
+    font-size: 18px; /* Adjust heading size */
+    margin: 0; /* Remove default margin */
+    text-transform: capitalize; /* Capitalize text */
+  }
+  

@@ -1,0 +1,77 @@
+/* Full Container Styling */
+.item-container {
+  background-color: #ffffff; /* White background for the container */
+  padding: 20px;
+  border-radius: 12px; /* Rounded corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  max-width: 600px; /* Limit width */
+  margin: 20px auto; /* Center the container */
+  box-sizing: border-box;
+}
+
+/* Table Styling */
+.item-table {
+  width: 100%;
+  border-collapse: collapse; /* Merge borders */
+  margin-bottom: 20px; /* Space between table and button */
+}
+
+.item-table th, .item-table td {
+  padding: 12px;
+  text-align: left;
+  font-size: 1.1rem;
+  color: #333333;
+}
+
+.item-table th {
+  background-color: #f4f4f4; /* Light gray background for header */
+  font-weight: bold;
+  color: #388e3c; /* Green color for headers */
+}
+
+.item-table td {
+  background-color: #fafafa; /* Light gray background for cells */
+  border-radius: 8px;
+}
+
+.item-table tr:nth-child(even) td {
+  background-color: #f9f9f9; /* Alternating row colors */
+}
+
+/* Button Styling */
+.button-container {
+  text-align: center;
+}
+
+.book-bids-11 {
+  background-color: #66bb6a; /* Green background */
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-decoration: none; /* Remove default underline from Link */
+  display: inline-block; /* Make the link behave like a button */
+}
+
+.book-bids-11:hover {
+  background-color: #388e3c; /* Darker green on hover */
+}
+
+/* Responsive Styling */
+@media (max-width: 600px) {
+  .item-container {
+    padding: 15px;
+  }
+
+  .item-table th, .item-table td {
+    font-size: 1rem; /* Adjust text size for smaller screens */
+  }
+
+  .book-bids-11 {
+    width: 100%; /* Button full-width on small screens */
+    padding: 15px;
+  }
+}

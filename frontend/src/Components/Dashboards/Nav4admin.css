@@ -1,0 +1,78 @@
+/* Nav4admin.css */
+
+/* Navbar Background */
+.nav4admin-navbar {
+  background: linear-gradient(90deg, #4caf50, #43a047); /* Green gradient */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Container */
+.nav4admin-container {
+  padding: 0 20px;
+}
+
+/* Brand (Home Link) */
+.nav4admin-brand {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+/* Toggler Button */
+.nav4admin-toggler {
+  border: none;
+}
+
+/* Collapsed Navbar Items (Fix black background) */
+.nav4admin-links {
+  background: transparent !important; /* ✅ Make sure it is transparent */
+}
+
+/* UL inside collapse (Fix black background) */
+.nav4admin-links ul {
+  background: transparent !important; /* ✅ Force transparent background */
+}
+
+/* Each Nav Item */
+.nav4admin-links .nav-item {
+  margin-left: 15px;
+}
+
+/* Nav Links */
+.nav4admin-link {
+  color: #ffffff !important;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+/* Hover Effect */
+.nav4admin-link:hover {
+  color: #c1e1c1 !important; /* Light green hover */
+  text-decoration: underline;
+}
+
+/* Active link (optional) */
+.nav4admin-link.active {
+  font-weight: bold;
+  color: #ffd700 !important; /* Golden active color */
+}
+
+
+.home-nav-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Align items horizontally in the center */
+}
+
+.home-nav-logo-icon {
+  font-size: 20px;
+  margin-right: 10px;
+  color: white; /* Makes the logo icon white */
+}
+
+.home-nav-logo-text {
+  font-size: 20px;
+  font-weight: bold;
+  color: white; /* Makes the text white */
+}

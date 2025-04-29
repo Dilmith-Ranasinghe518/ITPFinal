@@ -1,0 +1,105 @@
+body {
+    background-color: #f0f5ff;
+    font-family: 'Poppins', sans-serif;
+}
+
+.overtime-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    background: linear-gradient(to bottom right, #f0f8ff, #ffffff);
+}
+
+.overtime-card {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+}
+
+.overtime-title {
+    text-align: center;
+    color: #333;
+    margin-bottom: 25px;
+}
+
+.input-group {
+    margin-bottom: 18px;
+}
+
+.input-group label {
+    display: block;
+    color: #555;
+    font-weight: 500;
+    margin-bottom: 6px;
+}
+
+.input-group input,
+.input-group select,
+.input-group textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    transition: all 0.3s ease-in-out;
+    box-sizing: border-box;
+}
+
+.input-group input:focus,
+.input-group select:focus,
+.input-group textarea:focus {
+    border-color: #3a7afe;
+    box-shadow: 0 0 6px rgba(58, 122, 254, 0.3);
+    outline: none;
+}
+
+.date-group {
+    display: flex;
+    gap: 20px;
+}
+
+.date-group .input-group {
+    flex: 1;
+}
+
+textarea {
+    resize: none;
+}
+
+.btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.btn-primary, .btn-secondary {
+    padding: 10px 25px;
+    border-radius: 10px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: opacity 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #3a7afe;
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    opacity: 0.8;
+}
+
+.btn-secondary {
+    background-color: #ff5252;
+    color: #ffffff;
+}
+
+.btn-secondary:hover {
+    opacity: 0.8;
+}

@@ -1,0 +1,215 @@
+
+  
+  /* Main Container */
+  .bid-container1 {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 30px;
+    background: #f0f7f4; /* Light background with a soft eco-friendly vibe */
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* Header Styling */
+  .bid-header1 {
+    font-size: 2.8em;
+    font-weight: 700;
+    color: #2c6e49; /* Earthy dark green for headers */
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3); /* Adding depth */
+  }
+  
+  /* Error Message */
+  .error-message1 {
+    color: #ff7043; /* Warm orange for error, inspired by eco-warnings */
+    font-size: 1.5em;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+  
+  /* Table Styles */
+  .bid-table1 {
+    width: 100%;
+    margin-top: 30px;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .bid-table1 th, .bid-table1 td {
+    padding: 20px;
+    text-align: center;
+    font-size: 1.1em;
+    border: 1px solid #dcdcdc;
+    color: #333;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+  
+  /* Header Style - Gradient Background */
+  .bid-table1 th {
+    background: linear-gradient(135deg, #66bb6a, #388e3c);
+    color: white;
+    text-transform: uppercase;
+  }
+  
+  /* Hover Effect for Rows */
+  .bid-table1 tr:hover {
+    background: #f1f8e9; /* Soft, fresh green color */
+    transform: scale(1.02); /* Slight zoom on hover */
+  }
+  
+  /* Rejected Status Row */
+  .bid-table1 tr.rejected {
+    background-color: #f8d7da; /* Soft red for rejection */
+  }
+  
+  .bid-table1 td.rejected-status {
+    color: #b71c1c;
+    font-weight: bold;
+  }
+  
+  /* Accepted Status Row */
+  .bid-table1 tr.accepted {
+    background-color: #d9fbe2; /* Light green for acceptance */
+  }
+  
+  .bid-table1 td.accepted-status {
+    color: #388e3c;
+    font-weight: bold;
+  }
+  
+  /* Pending Status Row */
+  .bid-table1 tr.pending {
+    background-color: #fff9c4; /* Soft yellow for pending */
+  }
+  
+  .bid-table1 td.pending-status {
+    color: #ff9800;
+    font-weight: bold;
+  }
+  
+  /* Reason Column Styling */
+  .bid-table1 td span {
+    display: block;
+    font-style: italic;
+    color: #777;
+    margin-top: 8px;
+  }
+  
+  /* Input Styling for Reason */
+  .reason-input {
+    padding: 12px;
+    width: 230px;
+    border-radius: 8px;
+    border: 1px solid #81c784;
+    font-size: 1.1em;
+    transition: border-color 0.3s ease;
+    background-color: #f1f8e9;
+  }
+  
+  .reason-input:focus {
+    border-color: #388e3c;
+    outline: none;
+  }
+  
+  /* Update Button Styling */
+  .update-button {
+    padding: 12px 25px;
+    background-color: #66bb6a;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .update-button:hover {
+    background-color: #388e3c;
+  }
+  
+  .update-button:active {
+    transform: scale(0.98); /* Slight scale effect on click */
+  }
+  
+  /* Loading Text */
+  .loading-text {
+    text-align: center;
+    font-size: 1.8em;
+    color: #ffffff;
+    font-weight: bold;
+    letter-spacing: 1px;
+    animation: pulse 1.5s infinite ease-in-out;
+  }
+  
+  /* Animation for Loading Text */
+  @keyframes pulse {
+    0% {
+      opacity: 0.8;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.8;
+    }
+  }
+  
+  /* Custom Scrollbar */
+  .bid-table1::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .bid-table1::-webkit-scrollbar-thumb {
+    background-color: #66bb6a;
+    border-radius: 5px;
+  }
+  
+  .bid-table1::-webkit-scrollbar-track {
+    background: #f1f8e9;
+  }
+  
+  /* Mobile Responsiveness */
+  @media (max-width: 768px) {
+    .bid-header1 {
+      font-size: 2em;
+    }
+  
+    .bid-table1 th, .bid-table1 td {
+      padding: 12px;
+      font-size: 1em;
+    }
+  
+    .reason-input {
+      width: 180px;
+    }
+  
+    .update-button {
+      width: 100%;
+    }
+  }
+
+  .download-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .download-button:hover {
+    background-color: #45a049;
+  }
+  
+  

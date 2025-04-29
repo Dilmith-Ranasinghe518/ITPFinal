@@ -1,0 +1,220 @@
+/* Layout */
+.leave-admin-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background: #f1f5f9;
+  min-height: 100vh;
+}
+
+/* Updated Back Button */
+.leave-back-btn {
+  display: inline-block;
+  background-color: #e2e8f0;
+  color: #1e293b;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+}
+
+.leave-back-btn:hover {
+  background-color: #cbd5e1;
+}
+
+/* Center the Back Button with a small margin */
+.leave-back-wrapper {
+  margin-bottom: 20px;
+}
+
+
+/* Header */
+.leave-admin-header {
+  margin-bottom: 20px;
+}
+
+.leave-admin-header h2 {
+  font-size: 26px;
+  color: #1e293b;
+  margin-bottom: 10px;
+}
+
+/* Search and Buttons */
+.leave-search-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.leave-search-input {
+  padding: 8px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  flex: 1;
+  min-width: 220px;
+}
+
+.leave-search-btn,
+.leave-download-btn,
+.leave-export-btn {
+  padding: 8px 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 14px;
+}
+
+.leave-search-btn {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.leave-search-btn:hover {
+  background-color: #2563eb;
+}
+
+.leave-download-btn {
+  background-color: #0ea5e9;
+  color: white;
+}
+
+.leave-download-btn:hover {
+  background-color: #0284c7;
+}
+
+.leave-export-btn {
+  background-color: #f97316;
+  color: white;
+}
+
+.leave-export-btn:hover {
+  background-color: #ea580c;
+}
+
+/* Success Message */
+.leave-success-message {
+  background-color: #d1fae5;
+  color: #065f46;
+  padding: 12px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Table */
+.leave-table-scroll {
+  overflow-x: auto;
+}
+
+.leave-admin-table {
+  width: 100%;
+  background-color: white;
+  border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 8px rgba(0,0,0,0.08);
+}
+
+.leave-admin-table th {
+  background-color: #3b82f6;
+  color: white;
+  padding: 12px;
+  text-align: center;
+  font-size: 16px;
+}
+
+.leave-admin-table td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+/* Empty Table Message */
+.leave-empty {
+  text-align: center;
+  padding: 20px;
+  color: #64748b;
+  font-style: italic;
+}
+
+/* Action Buttons inside table */
+.leave-actions button {
+  margin: 0 5px;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.accept-btn {
+  background-color: #10b981;
+  color: white;
+}
+
+.accept-btn:hover {
+  background-color: #059669;
+}
+
+.reject-btn {
+  background-color: #ef4444;
+  color: white;
+}
+
+.reject-btn:hover {
+  background-color: #dc2626;
+}
+
+.delete-btn {
+  background-color: #6b7280;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #4b5563;
+}
+
+/* Status Badges - Only Text Color */
+.badge {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.badge-pending {
+  color: #f59e0b;
+  animation: blinkingText 1.5s infinite;
+}
+
+.badge-approved {
+  color: #10b981;
+}
+
+.badge-rejected {
+  color: #ef4444;
+}
+
+/* Blinking Animation */
+@keyframes blinkingText {
+  0% { opacity: 1; }
+  50% { opacity: 0.2; }
+  100% { opacity: 1; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .leave-search-area {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

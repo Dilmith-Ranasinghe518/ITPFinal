@@ -1,0 +1,103 @@
+/* Bid Item Container */
+.bid-item {
+  background: linear-gradient(145deg, #ffffff, #f0f0f0); /* Subtle gradient */
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+
+/* Hover effect for bid-item */
+.bid-item:hover {
+  transform: scale(1.02);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Bid Table Styling */
+.bid-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.bid-table-row {
+  border-bottom: 1px solid #ddd;
+}
+
+.bid-table-header {
+  text-align: left;
+  padding: 12px 16px;
+  font-weight: bold;
+  color: #333;
+}
+
+.bid-table-data {
+  padding: 12px 16px;
+  color: #666;
+}
+
+/* Button Styling */
+.bid-button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.bid-update-btn,
+.bid-delete-btn {
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  text-decoration: none;
+  text-align: center;
+  width: 48%;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.bid-update-btn {
+  background-color: #5cb85c; /* Green for update */
+  color: white;
+  border: none;
+}
+
+.bid-update-btn:hover {
+  background-color: #4cae4c; /* Darker green on hover */
+}
+
+.bid-delete-btn {
+  background-color: #d9534f; /* Red for delete */
+  color: white;
+  border: none;
+}
+
+.bid-delete-btn:hover {
+  background-color: #c9302c; /* Darker red on hover */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .bid-item {
+    padding: 15px;
+  }
+
+  .bid-button-group {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .bid-update-btn,
+  .bid-delete-btn {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
+
+.waste-image {
+  width: 200px;          /* Medium size */
+  height: auto;
+  border-radius: 15px;   /* Round corners */
+  display: block;
+  margin: 0 auto 20px;   /* Center horizontally + space below */
+}
+

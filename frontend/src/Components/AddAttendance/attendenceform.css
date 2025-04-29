@@ -1,0 +1,94 @@
+/* General container styling */
+.attendance-form-container {
+  width: 40%;
+  margin: 50px auto;
+  background: #ffffff;
+  padding: 20px 30px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+/* Title */
+.attendance-title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Form structure */
+.attendance-form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Grouping for input fields */
+.attendance-group {
+  margin-bottom: 15px;
+}
+
+/* Labels */
+.attendance-label {
+  font-size: 14px;
+  font-weight: bold;
+  color: #444;
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* Input fields */
+.attendance-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.attendance-input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Error message styling */
+.attendance-error {
+  color: red;
+  font-size: 12px;
+  margin-top: 3px;
+  display: block;
+}
+
+/* Submit Button */
+.attendance-submit-btn {
+  width: 100%;
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.attendance-submit-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .attendance-form-container {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .attendance-form-container {
+    width: 95%;
+  }
+}

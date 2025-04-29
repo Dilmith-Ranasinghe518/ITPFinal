@@ -1,0 +1,33 @@
+  <div className="flex h-screen">
+      {/* Sidebar */}
+      <div className="w-64 bg-green-700 p-5 text-white fixed h-full shadow-lg transition-all duration-300 ease-in-out">
+        <h2 className="text-2xl text-center mb-10 font-semibold">Inventory Dashboard</h2>
+        <ul className="list-none p-0">
+          <li className="mb-6">
+            <Link 
+              to="/mainhome" 
+              className="block text-gray-200 p-3 rounded-lg hover:bg-green-600 transition-all duration-200 ease-in-out"
+            >
+              <h3 className="text-lg font-medium">Main Home</h3>
+            </Link>
+          </li>
+
+          <li className="mb-6">
+            <Link 
+              to="/addinventory" 
+              className="block text-gray-200 p-3 rounded-lg hover:bg-green-600 transition-all duration-200 ease-in-out"
+            >
+              <h3 className="text-lg font-medium">Add Inventory</h3>
+            </Link>
+          </li>
+
+          <li className="mb-6">
+            <Link 
+              to="/stocklevels" 
+              className="block text-gray-200 p-3 rounded-lg hover:bg-green-600 transition-all duration-200 ease-in-out"
+            >
+              <h3 className="text-lg font-medium">Stock Levels</h3>
+            </Link>
+          </li>
+        </ul>
+      </div>
