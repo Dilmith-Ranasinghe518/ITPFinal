@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
-import Nav from "../Nav/Nav"; // Assuming you have a Nav component
-import "./UpdateUserRequest.css"; // Update the CSS file name as well
+import "./UpdateUserRequest.css";
 
 function UpdateUserRequest() {
   const [inputs, setInputs] = useState({
@@ -13,188 +12,149 @@ function UpdateUserRequest() {
     address: "",
     serviceType: "Home",
   });
-
-  const navigate = useNavigate();
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchHandler = async () => {
+    (async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/userRequest/${id}`);
-        setInputs(response.data.userRequest);
-      } catch (error) {
-        console.error("Error fetching user request data:", error);
-        alert("Failed to load user request data. Please try again.");
+        const { data } = await axios.get(`http://localhost:5000/userRequest/${id}`);
+        setInputs(data.userRequest);
+      } catch {
+        alert("Failed to load user request. Please try again.");
       }
-    };
-    fetchHandler();
+    })();
   }, [id]);
-
-  const sendRequest = async () => {
-    try {
-      await axios.put(`http://localhost:5000/userRequest/${id}`, {
-        name: String(inputs.name),
-        lastName: String(inputs.lastName),
-        email: String(inputs.email),
-        phone: String(inputs.phone),
-        address: String(inputs.address),
-        serviceType: String(inputs.serviceType),
-      });
-      return true;
-    } catch (error) {
-      console.error("Error updating user request:", error);
-      alert("Failed to update user request. Please try again.");
-      return false;
-    }
-  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
-    // Name & Last Name: Only letters and spaces allowed
-    if (name === "name" || name === "lastName") {
-      if (!/^[A-Za-z\s]*$/.test(value)) return;
-    }
-
-    // Phone: Only numbers allowed & max length 10
+    if ((name === "name" || name === "lastName") && !/^[A-Za-z\s]*$/.test(value)) return;
     if (name === "phone") {
-      if (!/^\d*$/.test(value)) return;
-      if (value.length > 10) return;
+      if (!/^\d*$/.test(value) || value.length > 10) return;
     }
-
-    setInputs((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
+    setInputs((p) => ({ ...p, [name]: value }));
   };
 
-  const handleServiceTypeChange = (type) => {
-    setInputs((prevState) => ({
-      ...prevState,
-      serviceType: type,
-    }));
-  };
+  const handleServiceTypeChange = (type) =>
+    setInputs((p) => ({ ...p, serviceType: type }));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const success = await sendRequest();
-    if (success) {
+    try {
+      await axios.put(`http://localhost:5000/userRequest/${id}`, inputs);
       navigate("/userRequestDetails");
+    } catch {
+      alert("Update failed. Please try again.");
     }
   };
 
-  const handleCancel = () => {
-    navigate("/userRequestDetails");
-  };
+  const handleCancel = () => navigate("/userRequestDetails");
 
   return (
-    <div className="update-container">
-      <Nav />
-      <div className="update-form-container">
-        <h1>Update User Request Information</h1>
-        <p>Edit the information below and submit to update the user request record.</p>
+    <div className="container">
+      <aside className="sidebar">
+        <div className="profile">
+          <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Profile" />
+          <h3>Dimmi</h3>
+        </div>
+        <nav className="nav-buttons">
+          <button onClick={() => navigate("/userdash")}>My Bin</button>
+          <button onClick={() => navigate("/userdash")}>Alerts</button>
+          <button onClick={() => navigate("/userreqdash")}>Pickup Request</button>
+          <button onClick={() => navigate("/logout")}>Log out</button>
+        </nav>
+      </aside>
+
+      <main className="form-wrapper">
+        <h1>Update Your Waste Request</h1>
+        <p>Edit your information and submit to update your request.</p>
+
+        <div className="service-toggle">
+          <button
+            className={inputs.serviceType === "Business & Organizations" ? "active" : ""}
+            onClick={() => handleServiceTypeChange("Business & Organizations")}
+          >
+            🏢 For Business & Organizations
+          </button>
+          <button
+            className={inputs.serviceType === "Home" ? "active" : ""}
+            onClick={() => handleServiceTypeChange("Home")}
+          >
+            🏠 For Your Home
+          </button>
+        </div>
 
         <form onSubmit={handleSubmit}>
-          <div className="service-type-selector">
-            <button
-              type="button"
-              className={`service-type-button ${
-                inputs.serviceType === "Business & Organizations" ? "active" : ""
-              }`}
-              onClick={() => handleServiceTypeChange("Business & Organizations")}
-            >
-              <span className="icon">🏢</span>
-              For Business & Organizations
-            </button>
-            <button
-              type="button"
-              className={`service-type-button ${inputs.serviceType === "Home" ? "active" : ""}`}
-              onClick={() => handleServiceTypeChange("Home")}
-            >
-              <span className="icon">🏠</span>
-              For Your Home
-            </button>
-          </div>
-
-          <div className="form-group full-width">
-            <label htmlFor="address">Address</label>
-            <input
-              type="text"
-              id="address"
-              name="address"
-              placeholder="e.g. 123 Main Street, NW, New York"
-              onChange={handleChange}
-              value={inputs.address || ""}
-              required
-            />
-          </div>
+          <label>Address</label>
+          <input
+            type="text"
+            name="address"
+            placeholder="e.g. 123 Main Street, NW, New York"
+            value={inputs.address}
+            onChange={handleChange}
+            required
+          />
 
           <div className="form-row">
-            <div className="form-group">
-              <label htmlFor="name">Name</label>
+            <div>
+              <label>Name</label>
               <input
                 type="text"
-                id="name"
                 name="name"
                 placeholder="e.g. Joshua"
+                value={inputs.name}
                 onChange={handleChange}
-                value={inputs.name || ""}
                 required
               />
             </div>
-
-            <div className="form-group">
-              <label htmlFor="lastName">Last Name</label>
+            <div>
+              <label>Last Name</label>
               <input
                 type="text"
-                id="lastName"
                 name="lastName"
                 placeholder="e.g. Smith"
+                value={inputs.lastName}
                 onChange={handleChange}
-                value={inputs.lastName || ""}
                 required
               />
             </div>
           </div>
 
           <div className="form-row">
-            <div className="form-group">
-              <label htmlFor="email">Email</label>
+            <div>
+              <label>Email</label>
               <input
                 type="email"
-                id="email"
                 name="email"
                 placeholder="e.g. smith@myemail.com"
+                value={inputs.email}
                 onChange={handleChange}
-                value={inputs.email || ""}
                 required
               />
             </div>
-
-            <div className="form-group">
-              <label htmlFor="phone">Phone</label>
+            <div>
+              <label>Phone</label>
               <input
                 type="tel"
-                id="phone"
                 name="phone"
                 placeholder="e.g. 205-555-0168"
+                value={inputs.phone}
                 onChange={handleChange}
-                value={inputs.phone || ""}
                 required
               />
             </div>
           </div>
 
-          <div className="action-buttons">
-            <button type="button" className="cancel-button" onClick={handleCancel}>
+          <div className="button-group">
+            <button type="button" className="cancel-btn" onClick={handleCancel}>
               Cancel
             </button>
-            <button type="submit" className="submit-button">
+            <button type="submit" className="update-btn">
               Update
             </button>
           </div>
         </form>
-      </div>
+      </main>
     </div>
   );
 }
