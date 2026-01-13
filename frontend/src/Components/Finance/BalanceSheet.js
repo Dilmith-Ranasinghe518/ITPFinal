@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import api from "../Finance/api";
 
+const splitAmount = (amount) => {
+  const [rupees, cents] = amount.toFixed(2).split('.');
+  return { rupees: parseInt(rupees), cents: cents.padStart(2, '0') };
+};
+
 const BalanceSheet = () => {
   // const [transactions, setTransactions] = useState([]); // Removed unused state
   const [summary, setSummary] = useState({
@@ -12,6 +17,44 @@ const BalanceSheet = () => {
   });
 
   useEffect(() => {
+    const calculateSummary = (transactions) => {
+      const incomes = [];
+      const expenses = [];
+      let totalIncome = 0;
+      let totalExpenses = 0;
+
+      transactions.forEach(transaction => {
+        const amount = parseFloat(transaction.amount);
+        const { rupees, cents } = splitAmount(amount);
+
+        if (transaction.transaction_type === 'Income') {
+          incomes.push({
+            reason: `${transaction.category} - ${transaction.waste_type}`,
+            amount: amount,
+            rupees,
+            cents
+          });
+          totalIncome += amount;
+        } else {
+          expenses.push({
+            reason: transaction.category,
+            amount: amount,
+            rupees,
+            cents
+          });
+          totalExpenses += amount;
+        }
+      });
+
+      setSummary({
+        incomes,
+        expenses,
+        totalIncome,
+        totalExpenses,
+        netBalance: totalIncome - totalExpenses
+      });
+    };
+
     const fetchTransactions = async () => {
       try {
         const response = await api.get('/');
@@ -23,49 +66,6 @@ const BalanceSheet = () => {
     };
     fetchTransactions();
   }, []);
-
-  const splitAmount = (amount) => {
-    const [rupees, cents] = amount.toFixed(2).split('.');
-    return { rupees: parseInt(rupees), cents: cents.padStart(2, '0') };
-  };
-
-  const calculateSummary = (transactions) => {
-    const incomes = [];
-    const expenses = [];
-    let totalIncome = 0;
-    let totalExpenses = 0;
-
-    transactions.forEach(transaction => {
-      const amount = parseFloat(transaction.amount);
-      const { rupees, cents } = splitAmount(amount);
-
-      if (transaction.transaction_type === 'Income') {
-        incomes.push({
-          reason: `${transaction.category} - ${transaction.waste_type}`,
-          amount: amount,
-          rupees,
-          cents
-        });
-        totalIncome += amount;
-      } else {
-        expenses.push({
-          reason: transaction.category,
-          amount: amount,
-          rupees,
-          cents
-        });
-        totalExpenses += amount;
-      }
-    });
-
-    setSummary({
-      incomes,
-      expenses,
-      totalIncome,
-      totalExpenses,
-      netBalance: totalIncome - totalExpenses
-    });
-  };
 
 
 
