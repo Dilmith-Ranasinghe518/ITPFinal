@@ -21,7 +21,7 @@ function EmpDash() {
 
   const fetchEmployeeDetails = async () => {
     try {
-      const response = await axios.get("http://localhost:5008/employee"); // Replace with dynamic user ID
+      const response = await axios.get("/api/employee"); // Replace with dynamic user ID
       setEmployee(response.data);
     } catch (error) {
       console.error("❌ Error fetching employee details:", error);

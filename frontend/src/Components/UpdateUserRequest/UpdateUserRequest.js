@@ -18,7 +18,7 @@ function UpdateUserRequest() {
   useEffect(() => {
     (async () => {
       try {
-        const { data } = await axios.get(`http://localhost:5008/userRequest/${id}`);
+        const { data } = await axios.get(`/api/userRequest/${id}`);
         setInputs(data.userRequest);
       } catch {
         alert("Failed to load user request. Please try again.");
@@ -41,7 +41,7 @@ function UpdateUserRequest() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:5008/userRequest/${id}`, inputs);
+      await axios.put(`/api/userRequest/${id}`, inputs);
       navigate("/userRequestDetails");
     } catch {
       alert("Update failed. Please try again.");

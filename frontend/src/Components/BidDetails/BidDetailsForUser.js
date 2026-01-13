@@ -4,7 +4,7 @@ import Bids from '../Bids/BidsForRecycler';
 import "./BidDetailsForUser.css";
 
 
-const URL = "http://localhost:5008/admin";
+const URL = "/api/admin";
 
 const fetchHandler = async () => {
   try {

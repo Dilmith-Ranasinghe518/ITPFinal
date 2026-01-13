@@ -10,7 +10,7 @@ import 'jspdf-autotable';
 import { FaHome, FaPlus, FaRecycle, FaRoute, FaSignOutAlt, FaChartPie, FaChartLine, FaClipboardList, FaDownload } from 'react-icons/fa';
 // import './InventoryDetails.css'; // Removed external CSS
 
-const URL = "http://localhost:5008/inventory";
+const URL = "/api/inventory";
 
 const fetchHandler = async () => {
   return await axios.get(URL).then((res) => res.data);
@@ -98,7 +98,7 @@ function InventoryDetails() {
 
   const fetchRecycleData = async () => {
     try {
-      const res = await axios.get("http://localhost:5008/recycle");
+      const res = await axios.get("/api/recycle");
       setRecycleData(res.data);
     } catch (err) {
       console.error("Error fetching recycled data:", err);
@@ -171,7 +171,7 @@ function InventoryDetails() {
     const confirmDelete = window.confirm("Are you sure you want to delete this?");
     if (!confirmDelete) return;
     try {
-      await axios.delete(`http://localhost:5008/inventory/${id}`);
+      await axios.delete(`/api/inventory/${id}`);
       setInventoryDetails((prevInventory) => prevInventory.filter(item => item._id !== id));
       setIsDataUpdated(true);
     } catch (error) {
@@ -279,7 +279,7 @@ function InventoryDetails() {
     if (!matchingCategory || recycleQuantity > matchingCategory.quantity) { alert("Invalid quantity."); return; }
 
     try {
-      await axios.post("http://localhost:5008/recycle", { recycledData: [{ category: selectedCategory, quantity: parseFloat(recycleQuantity) }] });
+      await axios.post("/api/recycle", { recycledData: [{ category: selectedCategory, quantity: parseFloat(recycleQuantity) }] });
       alert("♻️ Successfully transferred to recycle.");
       setSelectedCategory(""); setRecycleQuantity("");
       loadInventoryData(); setIsDataUpdated(true);

@@ -49,7 +49,7 @@ function AddUserRequest() {
 
   const sendRequest = async () => {
     await axios
-      .post("http://localhost:5008/userRequest", {
+      .post("/api/userRequest", {
         name: String(inputs.name),
         lastName: String(inputs.lastName),
         email: String(inputs.email),

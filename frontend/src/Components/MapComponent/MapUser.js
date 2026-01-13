@@ -23,7 +23,7 @@ const MapUser = () => {
 
   const fetchRedBins = async () => {
     try {
-      const response = await axios.get("http://localhost:5008/api/getBins");
+      const response = await axios.get("/api/getBins");
       const fullBins = response.data.filter((bin) => bin.full === true);
       setRedBins(fullBins);
     } catch (error) {
@@ -34,7 +34,7 @@ const MapUser = () => {
   // ✅ Mark bin as normal and remove from redBins
   const updateBinStatus = async (id) => {
     try {
-      const response = await axios.put(`http://localhost:5008/api/updateBin/${id}`, {
+      const response = await axios.put(`/api/updateBin/${id}`, {
         full: false,
       });
 

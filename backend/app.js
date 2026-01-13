@@ -42,7 +42,7 @@ const User = mongoose.model('User', userSchema);
 // Routes for user authentication (Register and Login)
 
 // Register (with bcrypt for password hashing)
-app.post('/register', async (req, res) => {
+app.post('/api/register', async (req, res) => {
   const { username, password, role } = req.body;
   const hashedPassword = await bcrypt.hash(password, 10);
   const user = new User({ username, password: hashedPassword, role });
@@ -51,7 +51,7 @@ app.post('/register', async (req, res) => {
 });
 
 // Login (with JWT token generation)
-app.post('/login', async (req, res) => {
+app.post('/api/login', async (req, res) => {
   const { username, password } = req.body;
   const user = await User.findOne({ username });
   if (!user || !(await bcrypt.compare(password, user.password))) {
@@ -62,27 +62,27 @@ app.post('/login', async (req, res) => {
 });
 
 // Routes for inventory, bin, and recycle operations
-app.use("/inventory", inventoryRouter);
+app.use("/api/inventory", inventoryRouter);
 app.use("/api", binRouter);
-app.use("/recycle", recycleRoutes);
+app.use("/api/recycle", recycleRoutes);
 
 // Routes for admin and bids requests
-app.use("/admin", adminRouter);
-app.use("/bids", bidsRouter);
+app.use("/api/admin", adminRouter);
+app.use("/api/bids", bidsRouter);
 
 //Routes for HR Management
 app.use("/api", leaveRoutes);
 app.use("/api", overtimeRoutes);
-app.use("/employees", employeeRoutes); // Change endpoint from /users to /employees
+app.use("/api/employees", employeeRoutes); // Change endpoint from /users to /employees
 
 //Routes for Finance Management
-app.use("/transactionsdb", router);
+app.use("/api/transactionsdb", router);
 
 //Routes for Bin IOT
 app.use('/api', wasteRoute);
 
 //Routes for User Requests 
-app.use("/userRequest", Requestrouter);
+app.use("/api/userRequest", Requestrouter);
 
 // Start the server
 if (require.main === module) {

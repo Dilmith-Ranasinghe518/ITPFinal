@@ -16,7 +16,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5008/login', { username, password });
+      const res = await axios.post('/api/login', { username, password });
       setUser({ username, role: res.data.token });
       localStorage.setItem('token', res.data.token);
       navigate(`/dashboard/${res.data.role}`); // Corrected this line

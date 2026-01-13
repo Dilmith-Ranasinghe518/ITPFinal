@@ -20,7 +20,7 @@ const AdminAttendU = () => {
 
   const fetchAttendance = async () => {
     try {
-      const res = await axios.get("http://localhost:5008/users");
+      const res = await axios.get("/api/users");
       setAttendanceData(res.data.users || []);
     } catch (err) {
       console.error("Error fetching attendance:", err);
@@ -39,7 +39,7 @@ const AdminAttendU = () => {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this record?")) {
       try {
-        await axios.delete(`http://localhost:5008/users/${id}`);
+        await axios.delete(`/api/users/${id}`);
         fetchAttendance();
       } catch (err) {
         console.error("Delete error:", err);

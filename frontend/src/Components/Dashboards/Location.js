@@ -34,7 +34,7 @@ const Location = () => {
 
   const fetchNormalBins = async () => {
     try {
-      const response = await axios.get("http://localhost:5008/api/getBins");
+      const response = await axios.get("/api/getBins");
       const normal = response.data.filter((bin) => !bin.full);
       setNormalBins(normal);
     } catch (error) {

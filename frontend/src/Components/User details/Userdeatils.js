@@ -19,7 +19,7 @@ function UserDetails() {
 
   const fetchUsers = async () => {
     try {
-      const res = await axios.get("http://localhost:5008/users");
+      const res = await axios.get("/api/users");
       const allUsers = res.data.users || [];
       setUsers(allUsers);
       setFilteredUsers(allUsers);

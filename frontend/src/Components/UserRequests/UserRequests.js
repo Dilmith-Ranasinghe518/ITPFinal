@@ -4,7 +4,7 @@ import UserRequest from "../UserRequest/UserRequest"; // Updated import
 import { useReactToPrint } from "react-to-print";
 import "./UserRequests.css"; // Update the CSS file name as well
 
-const URL = "http://localhost:5008/userRequest";
+const URL = "/api/userRequest";
 
 const fetchHandler = async () => {
   return await axios.get(URL).then((res) => res.data);

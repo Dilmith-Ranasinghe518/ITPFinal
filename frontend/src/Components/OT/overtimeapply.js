@@ -19,7 +19,7 @@ const OvertimeApply = () => {
 
   const fetchUser = async () => {
     try {
-      const res = await axios.get("http://localhost:5008/users");
+      const res = await axios.get("/api/users");
       if (res.data.users.length > 0) {
         setUserId(res.data.users[0]._id);
         setEmployeeName(res.data.users[0].name);
@@ -32,7 +32,7 @@ const OvertimeApply = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5008/api/overtimeapply", {
+      await axios.post("/api/overtimeapply", {
         userId,
         employeeName,
         fromDate,
@@ -42,7 +42,7 @@ const OvertimeApply = () => {
         status: "Pending",
       });
 
-      await axios.patch(`http://localhost:5008/users/update-overtime-status/${userId}`, {
+      await axios.patch(`/api/users/update-overtime-status/${userId}`, {
         overtimeStatus: "Pending",
       });
 

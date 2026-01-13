@@ -15,7 +15,7 @@ function StatusForUser() {
   useEffect(() => {
     const fetchBids = async () => {
       try {
-        const response = await axios.get('http://localhost:5008/bids');
+        const response = await axios.get('/api/bids');
         // Only keep accepted bids
         const acceptedBids = response.data.bids.filter(bid => bid.status === 'Accepted');
         setBids(acceptedBids);

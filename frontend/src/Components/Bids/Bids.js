@@ -21,7 +21,7 @@ function Bids(props) {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await axios.delete(`http://localhost:5008/admin/${_id}`);
+          await axios.delete(`/api/admin/${_id}`);
           if (props.onDelete) {
             props.onDelete(_id);
           }

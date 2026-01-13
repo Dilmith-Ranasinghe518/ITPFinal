@@ -18,7 +18,7 @@ function WasteDashboard() {
   useEffect(() => {
     const fetchBins = async () => {
       try {
-        const response = await axios.get('http://localhost:5008/api/getBins');
+        const response = await axios.get('/api/getBins');
         setBins(response.data);
         const fullBinCount = response.data.filter(bin => bin.full).length;
         setFullBins(fullBinCount);
@@ -33,7 +33,7 @@ function WasteDashboard() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:5008/api/waste-level');
+        const response = await fetch('/api/waste-level');
         const data = await response.json();
         setWasteLevel(data.wasteLevel);
 
@@ -66,7 +66,7 @@ function WasteDashboard() {
         return;
       }
 
-      await axios.put(`http://localhost:5008/api/updateBin/${binId}`, { full: isFull });
+      await axios.put(`/api/updateBin/${binId}`, { full: isFull });
       console.log(`Bin ${binId} status updated to ${isFull ? 'Full' : 'Normal'}`);
 
       const updatedBins = bins.map(bin =>

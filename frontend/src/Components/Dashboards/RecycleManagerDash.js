@@ -21,7 +21,7 @@ export default function Dashboard() {
 
   const fetchRecycleData = async () => {
     try {
-      const response = await axios.get('http://localhost:5008/recycle');
+      const response = await axios.get('/api/recycle');
       console.log('Fetched Recycle Data:', response.data);
 
       const rawData = response.data;

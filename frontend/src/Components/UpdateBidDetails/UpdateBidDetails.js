@@ -19,7 +19,7 @@ function UpdateBidDetails() {
   useEffect(() => {
     const fetchBidData = async () => {
       try {
-        const response = await axios.get(`http://localhost:5008/admin/${id}`);
+        const response = await axios.get(`/api/admin/${id}`);
         console.log("API Response:", response.data); // Debugging
 
         if (response.data && response.data.admin) {
@@ -45,7 +45,7 @@ function UpdateBidDetails() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.put(`http://localhost:5008/admin/${id}`, {
+      const response = await axios.put(`/api/admin/${id}`, {
         wtype: inputs.wtype,
         amount: inputs.amount,
         price: inputs.price,

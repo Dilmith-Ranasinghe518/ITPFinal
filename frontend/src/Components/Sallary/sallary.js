@@ -23,7 +23,7 @@ function Salary() {
 
   const fetchEmployees = async () => {
     try {
-      const res = await axios.get("http://localhost:5008/employees");
+      const res = await axios.get("/api/employees");
       setEmployees(res.data.employees || []);
     } catch (error) {
       console.error("Error fetching employees", error);

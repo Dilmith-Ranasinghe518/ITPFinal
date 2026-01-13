@@ -11,7 +11,7 @@ const UserRequest = (props) => {
     const confirmed = window.confirm("Are you sure you want to delete this user request?");
     if (confirmed) {
       await axios
-        .delete(`http://localhost:5008/userRequest/${_id}`)
+        .delete(`/api/userRequest/${_id}`)
         .then((res) => res.data)
         .then(() => navigate("/"))
         .then(() => navigate("/userRequestDetails"));

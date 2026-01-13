@@ -16,7 +16,7 @@ function BidReqStatusDisplayForAdmin() {
   useEffect(() => {
     const fetchBids = async () => {
       try {
-        const response = await axios.get('http://localhost:5008/bids');
+        const response = await axios.get('/api/bids');
         setBids(response.data.bids);
         setIsLoading(false);
       } catch (error) {
@@ -35,11 +35,11 @@ function BidReqStatusDisplayForAdmin() {
     try {
       let url;
       if (status === 'Accepted') {
-        url = `http://localhost:5008/bids/${id}/accept`;
+        url = `/api/bids/${id}/accept`;
       } else if (status === 'Rejected') {
-        url = `http://localhost:5008/bids/${id}/reject`;
+        url = `/api/bids/${id}/reject`;
       } else {
-        url = `http://localhost:5008/bids/${id}/status`;
+        url = `/api/bids/${id}/status`;
       }
 
       const response = await axios.patch(url, { status, rejectionReason });

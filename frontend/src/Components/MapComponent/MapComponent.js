@@ -79,7 +79,7 @@ const MapComponent = () => {
     };
 
     try {
-      const response = await axios.post("http://localhost:5008/api/addBin", newBin);
+      const response = await axios.post("/api/addBin", newBin);
       const createdBin = { ...newBin, _id: response.data._id };
       setWasteBins((prev) => [...prev, createdBin]);
       setBinName("");
@@ -92,7 +92,7 @@ const MapComponent = () => {
 
   const fetchBins = async () => {
     try {
-      const response = await axios.get("http://localhost:5008/api/getBins");
+      const response = await axios.get("/api/getBins");
       setWasteBins(response.data);
     } catch (error) {
       console.error("Error fetching bins:", error);
@@ -103,7 +103,7 @@ const MapComponent = () => {
   // ✅ Function to update bin (make full → normal)
   const updateBinStatus = async (id) => {
     try {
-      const response = await axios.put(`http://localhost:5008/api/updateBin/${id}`, { full: false });
+      const response = await axios.put(`/api/updateBin/${id}`, { full: false });
       const updatedBin = response.data.bin;
 
       setWasteBins((prev) =>
@@ -120,7 +120,7 @@ const MapComponent = () => {
   // ✅ Function to delete bin
   const deleteBin = async (id) => {
     try {
-      await axios.delete(`http://localhost:5008/api/deleteBin/${id}`);
+      await axios.delete(`/api/deleteBin/${id}`);
       setWasteBins((prev) => prev.filter((bin) => bin._id !== id));
       alert("Bin deleted successfully.");
     } catch (error) {

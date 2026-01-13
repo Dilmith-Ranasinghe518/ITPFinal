@@ -28,7 +28,7 @@ const WasteCollectorDash = () => {
 
   const fetchBins = async () => {
     try {
-      const response = await axios.get('http://localhost:5008/api/getBins');
+      const response = await axios.get('/api/getBins');
       setWasteBins(response.data);
     } catch (error) {
       console.error('Error fetching bins:', error);
@@ -38,7 +38,7 @@ const WasteCollectorDash = () => {
 
   const changeBinStatus = async (id) => {
     try {
-      const response = await axios.put(`http://localhost:5008/api/updateBin/${id}`, { full: false });
+      const response = await axios.put(`/api/updateBin/${id}`, { full: false });
       toast.success('Bin marked as normal!');
 
       setWasteBins((prevBins) => {
