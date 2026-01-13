@@ -82,10 +82,12 @@ app.use("/transactionsdb", router);
 app.use('/api', wasteRoute);
 
 //Routes for User Requests 
-app.use("/userRequest", Requestrouter); 
+app.use("/userRequest", Requestrouter);
 
 // Start the server
-const PORT = process.env.PORT || 5008;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+if (require.main === module) {
+  const PORT = process.env.PORT || 5008;
+  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+}
 
 module.exports = app; // For CommonJS export if needed
