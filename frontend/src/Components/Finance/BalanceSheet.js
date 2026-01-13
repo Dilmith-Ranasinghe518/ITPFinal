@@ -38,7 +38,7 @@ const BalanceSheet = () => {
     transactions.forEach(transaction => {
       const amount = parseFloat(transaction.amount);
       const { rupees, cents } = splitAmount(amount);
-      
+
       if (transaction.transaction_type === 'Income') {
         incomes.push({
           reason: `${transaction.category} - ${transaction.waste_type}`,
@@ -67,41 +67,7 @@ const BalanceSheet = () => {
     });
   };
 
-  const renderAmountCell = (amount) => {
-    const { rupees, cents } = splitAmount(amount);
-    return (
-      <>
-        <td className="balance-sheet__rupees-cell">{rupees}</td>
-        <td className="balance-sheet__cents-cell">{cents}</td>
-      </>
-    );
-  };
 
-  const renderTotalRow = (label, amount) => {
-    const { rupees, cents } = splitAmount(amount);
-    return (
-      <tr className="balance-sheet__total-row">
-        <td colSpan="2"><strong>{label}</strong></td>
-        <td className="balance-sheet__amount-cell">
-          <div className="balance-sheet__rupees">{rupees}</div>
-          <div className="balance-sheet__cents">{cents}</div>
-        </td>
-        <td className="balance-sheet__amount-cell">
-          <div className="balance-sheet__rupees">{rupees}</div>
-          <div className="balance-sheet__cents">{cents}</div>
-        </td>
-        <td colSpan="2"></td>
-        <td className="balance-sheet__amount-cell">
-          <div className="balance-sheet__rupees">{rupees}</div>
-          <div className="balance-sheet__cents">{cents}</div>
-        </td>
-        <td className="balance-sheet__amount-cell">
-          <div className="balance-sheet__rupees">{rupees}</div>
-          <div className="balance-sheet__cents">{cents}</div>
-        </td>
-      </tr>
-    );
-  };
 
   return (
     <div className="balance-sheet">

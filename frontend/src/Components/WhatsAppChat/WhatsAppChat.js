@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { FaWhatsapp, FaTimes } from 'react-icons/fa';
+import { FaWhatsapp } from 'react-icons/fa';
 
 const WhatsAppChat = () => {
-    const [isOpen, setIsOpen] = useState(true); // Start open to show the button
+    const [isOpen] = useState(true); // Start open to show the button
     const phoneNumber = "94717170333"; // Replace with actual number
     const message = "Hello! I'm interested in Clean Cycle services.";
 
@@ -24,7 +24,6 @@ const WhatsAppChat = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group relative flex items-center justify-center w-16 h-16 bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-110 z-50 animate-bounce-subtle"
-                onMouseEnter={() => setIsOpen(true)}
             >
                 <FaWhatsapp className="text-4xl" />
 

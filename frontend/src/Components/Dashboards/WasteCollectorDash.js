@@ -38,7 +38,7 @@ const WasteCollectorDash = () => {
 
   const changeBinStatus = async (id) => {
     try {
-      const response = await axios.put(`/api/updateBin/${id}`, { full: false });
+      await axios.put(`/api/updateBin/${id}`, { full: false });
       toast.success('Bin marked as normal!');
 
       setWasteBins((prevBins) => {

@@ -40,26 +40,13 @@ function BidDetails() {
     setNoResults(filteredResults.length === 0);
   };
 
-  const handleSendReport = () => {
-    const selectedBids = filteredBids.map(bid =>
-      `Bid ID: ${bid.id}, Amount: ${bid.amount}, Price: ${bid.price}`
-    );
-
-    const message = `Bid Report:\n\n${selectedBids.join('\n')}`;
-
-    const phoneNumber = "94765294806"; // WhatsApp Number
-    const WhatsAppUrl = `https://web.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
-
-    window.open(WhatsAppUrl, "_blank");
-  };
-
   return (
     <div>
-     
+
       <h1>Bid Details Page</h1>
-<div>
-  
-</div>
+      <div>
+
+      </div>
       <input className="bla-bla"
         onChange={(e) => setSearchQuery(e.target.value)}
         type="text"
@@ -83,7 +70,7 @@ function BidDetails() {
         </div>
       )}
 
-      
+
     </div>
   );
 }

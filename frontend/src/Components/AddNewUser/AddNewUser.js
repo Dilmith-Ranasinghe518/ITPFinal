@@ -27,8 +27,6 @@ const AddNewUser = () => {
     role: ""
   });
 
-  const [loading, setLoading] = useState(false);
-
   // Handle form field changes
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -119,7 +117,7 @@ const AddNewUser = () => {
       const response = await axios.post("/api/employees", formData);
       if (response.data.status === "success") {
         alert("✅ Employee added successfully!");
-        navigate("/AdminDashboard"); 
+        navigate("/AdminDashboard");
       } else {
         alert("❌ Error adding employee.");
       }

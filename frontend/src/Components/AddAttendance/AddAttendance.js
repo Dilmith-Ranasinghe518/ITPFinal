@@ -56,7 +56,7 @@ function AddAttendance() {
     if (!validateForm()) return;
 
     try {
-      const response = await axios.post("/api/users", formData);
+      await axios.post("/api/users", formData);
       alert("Attendance recorded successfully!");
       localStorage.setItem("empId", formData.Id);
       localStorage.setItem("empName", formData.name);
@@ -113,7 +113,7 @@ function AddAttendance() {
             name="date"
             value={formData.date}
             className="attendance-input"
-            readOnly 
+            readOnly
           />
         </div>
 
@@ -125,7 +125,7 @@ function AddAttendance() {
             name="time"
             value={formData.time}
             className="attendance-input"
-            readOnly 
+            readOnly
           />
         </div>
 

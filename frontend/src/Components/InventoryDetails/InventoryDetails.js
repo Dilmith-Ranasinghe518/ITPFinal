@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import {
   BarChart, Bar, LineChart, Line, XAxis, YAxis,
-  Tooltip, ResponsiveContainer, CartesianGrid, PieChart, Pie, Cell, Legend
+  Tooltip, ResponsiveContainer, CartesianGrid
 } from "recharts";
 import { jsPDF } from "jspdf";
 import 'jspdf-autotable';
@@ -87,6 +87,7 @@ function InventoryDetails() {
       setCurrentTime(now);
     }, 1000);
     return () => clearInterval(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -94,6 +95,7 @@ function InventoryDetails() {
       loadInventoryData();
       setIsDataUpdated(false);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isDataUpdated]);
 
   const fetchRecycleData = async () => {

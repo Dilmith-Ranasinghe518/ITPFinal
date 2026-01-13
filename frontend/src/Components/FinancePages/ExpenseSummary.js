@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import api from "../Finance/api";
-import { toPDF } from 'react-to-pdf';
+
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
@@ -28,7 +28,7 @@ const ExpenseSummary = () => {
 
   const calculateSummary = (expenseTransactions) => {
     const totalExpenses = expenseTransactions.reduce((sum, t) => sum + parseFloat(t.amount), 0);
-    
+
     const expensesByCategory = expenseTransactions.reduce((acc, t) => {
       acc[t.category] = (acc[t.category] || 0) + parseFloat(t.amount);
       return acc;

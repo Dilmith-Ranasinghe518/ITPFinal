@@ -1,5 +1,5 @@
 import React from "react";
-import { FaSearch, FaUser, FaRecycle } from "react-icons/fa";
+import { FaUser, FaRecycle } from "react-icons/fa";
 
 const HomeNav = () => {
   return (

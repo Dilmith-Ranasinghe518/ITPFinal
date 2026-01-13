@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import api from "./api";
 
@@ -12,23 +12,23 @@ const UpdateTransactionForm = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    
+
     if (name === 'amount') {
       // Only allow numbers (0-9)
       if (!/^\d*$/.test(value)) {
         setError('Only numbers are valid');
         return;
       }
-      
+
       // Check if the number is too long (more than 7 digits)
       if (value.length > 7) {
         setError('Amount cannot exceed 7 digits');
         return;
       }
-      
+
       setError('');
     }
-    
+
     setFormData({
       ...formData,
       [name]: value,
@@ -37,7 +37,7 @@ const UpdateTransactionForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     // Validate amount before submission
     if (!formData.amount || !/^\d+$/.test(formData.amount) || formData.amount.length > 7) {
       setError('Please enter a valid amount (numbers only, max 7 digits)');
@@ -96,9 +96,9 @@ const UpdateTransactionForm = () => {
         </h2>
 
         <form onSubmit={handleSubmit}>
-          <div style={{ 
-            display: 'grid', 
-            gridTemplateColumns: '1fr 1fr', 
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr',
             gap: '2rem',
             background: '#f8f9fa',
             padding: '1.5rem',

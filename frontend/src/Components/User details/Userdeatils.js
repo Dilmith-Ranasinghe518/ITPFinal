@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { useReactToPrint } from "react-to-print";
 import { useNavigate } from "react-router-dom";
-import { FaTachometerAlt, FaTasks, FaCalendarCheck, FaCalendarDay, FaCommentDots, FaBuilding, FaCog, FaSignOutAlt, FaSearch, FaFileDownload, FaWhatsapp, FaClock, FaCalendarPlus, FaUserClock } from 'react-icons/fa';
+import { FaTachometerAlt, FaTasks, FaCalendarCheck, FaCalendarDay, FaCommentDots, FaBuilding, FaCog, FaSignOutAlt, FaSearch, FaFileDownload, FaWhatsapp, FaCalendarPlus, FaUserClock } from 'react-icons/fa';
 // import "./attendd.css"; // CSS Removed
 
 function UserDetails() {

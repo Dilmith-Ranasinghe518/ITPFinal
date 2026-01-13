@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 // Import dashboard components for each role
 
 //import InventoryDash from "../Dashboards/InventoryDash";
-import Home from "../Home/Home";
+// import Home from "../Home/Home";
 import UserDash from "../Dashboards/UserDash";
 import RecyclerDash from "../Dashboards/RecyclerDash";
 import WasteCollectorDash from "../Dashboards/WasteCollectorDash";
@@ -32,7 +32,7 @@ const Dashboard = () => {
 
       case 'finance':
         return <FinanceDash />;
-        
+
       case 'hr':
         return <HRDash />;
 
@@ -40,7 +40,7 @@ const Dashboard = () => {
         return <RecycleManagerDash />;
 
 
-  
+
 
 
       default:
@@ -52,7 +52,7 @@ const Dashboard = () => {
   return (
     <div>
       {renderDashboard()}
-      
+
     </div>
   );
 };

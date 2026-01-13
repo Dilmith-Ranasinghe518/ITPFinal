@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './BidsForRecycler.css';
 
 function Bids(props) {
-  const { _id, wtype, amount, price } = props.admins;  // Destructuring props
+  const { wtype, amount, price } = props.admins;  // Destructuring props
 
   // Function to get correct image based on waste type
   const getWasteImage = (type) => {
@@ -26,13 +26,13 @@ function Bids(props) {
 
   return (
     <div className="item-container">
-      
+
       {/* Show image only if available */}
       {wasteImage && (
-        <img 
-          src={wasteImage} 
-          alt={wtype} 
-          className="waste-image" 
+        <img
+          src={wasteImage}
+          alt={wtype}
+          className="waste-image"
         />
       )}
 

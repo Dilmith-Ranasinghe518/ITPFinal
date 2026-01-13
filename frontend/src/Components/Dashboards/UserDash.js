@@ -7,7 +7,7 @@ function WasteDashboard() {
   const [bins, setBins] = useState([]);
   const [selectedBinId, setSelectedBinId] = useState(null);
   const [fullBins, setFullBins] = useState(0);
-  const [userProfile, setUserProfile] = useState({
+  const [userProfile] = useState({
     name: 'Dimmi',
     profileImage: 'https://randomuser.me/api/portraits/men/1.jpg',
   });
@@ -57,6 +57,7 @@ function WasteDashboard() {
     fetchData();
     const interval = setInterval(fetchData, 5008);
     return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedBinId]);
 
   const updateBinStatus = async (binId, isFull) => {

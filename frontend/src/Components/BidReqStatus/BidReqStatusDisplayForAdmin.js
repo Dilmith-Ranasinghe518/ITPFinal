@@ -60,25 +60,6 @@ function BidReqStatusDisplayForAdmin() {
     }
   };
 
-  const handleClick = (bid) => {
-    Swal.fire({
-      title: 'Are you sure?',
-      text: "Do you want to submit this bid?",
-      icon: 'question',
-      showCancelButton: true,
-      cancelButtonText: 'Cancel',
-      confirmButtonText: 'Submit',
-      confirmButtonColor: '#007bff',
-    }).then((result) => {
-      if (result.isConfirmed) {
-        const bidId = bid._id;
-        const status = selectedStatuses[bidId] || bid.status;
-        const reason = rejectionReasons[bidId] || '';
-        updateStatus(bidId, status, reason);
-      }
-    });
-  };
-
   if (isLoading) {
     return <div className="loading-text">Loading bids...</div>;
   }

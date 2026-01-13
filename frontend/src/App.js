@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { UserProvider } from './Components/Dashboards/UserContext'; // Ensure UserContext is properly imported
 
 // Import Components for Inventory Section
-import Home from "./Components/Home/Home";
 import CCHome from "./Components/Home/CCHome";
 import InventoryDetails from "./Components/InventoryDetails/InventoryDetails";
 import AddItem from "./Components/AddItem/AddItem";
@@ -21,7 +20,6 @@ import WasteCollectorDash from "./Components/Dashboards/WasteCollectorDash";
 
 // Import Components for User Dashboard
 import Dashboard from './Components/Dashboards/Dashboard';
-import MapComponent from "./Components/MapComponent/MapComponent";
 
 //Import Components for Recycle Section
 import AddBid from "./Components/AddBid/AddBid";
@@ -60,7 +58,7 @@ import HRDash from "./Components/Dashboards/HRDash";
 
 
 import TransactionForm from "./Components/Finance/TransactionForm";
-import TransactionList from "./Components/Finance/TransactionList";
+// import TransactionList from "./Components/Finance/TransactionList";
 import UpdateTransactionForm from "./Components/Finance/UpdateTransactionForm"; // Import the update form
 import IncomeSummary from "./Components/FinancePages/IncomeSummary";
 import ExpenseSummary from "./Components/FinancePages/ExpenseSummary";
