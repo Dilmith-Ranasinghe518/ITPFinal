@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './BidReqStatus.css';
-import Swal from 'sweetalert2';
+
 import { FaBell } from 'react-icons/fa';
 import Nav4admin from "../Dashboards/NavRecy";
 import Footer from "../Footer/Footer";

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import api from "../Finance/api";
 
 const BalanceSheet = () => {
-  const [transactions, setTransactions] = useState([]);
+  // const [transactions, setTransactions] = useState([]); // Removed unused state
   const [summary, setSummary] = useState({
     incomes: [],
     expenses: [],
@@ -15,7 +15,7 @@ const BalanceSheet = () => {
     const fetchTransactions = async () => {
       try {
         const response = await api.get('/');
-        setTransactions(response.data);
+        // setTransactions(response.data); // Removed unused state set
         calculateSummary(response.data);
       } catch (error) {
         console.error('Error fetching transactions:', error);

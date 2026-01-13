@@ -52,7 +52,7 @@ const FinanceDash = () => {
           backdropFilter: 'blur(10px)',
           WebkitBackdropFilter: 'blur(10px)'
         }}>
-          <h1 className="financedash-title" style={{ 
+          <h1 className="financedash-title" style={{
             color: '#2c3e50',
             fontSize: '2.8rem',
             marginBottom: '0.5rem',
@@ -112,7 +112,7 @@ const FinanceDash = () => {
             backdropFilter: 'blur(10px)',
             WebkitBackdropFilter: 'blur(10px)'
           }}>
-            <h2 className="financedash-box-title" style={{ 
+            <h2 className="financedash-box-title" style={{
               color: '#2c3e50',
               marginBottom: '1.5rem',
               fontSize: '2rem',
@@ -144,7 +144,7 @@ const FinanceDash = () => {
             backdropFilter: 'blur(10px)',
             WebkitBackdropFilter: 'blur(10px)'
           }}>
-            <h2 className="financedash-box-title" style={{ 
+            <h2 className="financedash-box-title" style={{
               color: '#2c3e50',
               marginBottom: '1.5rem',
               fontSize: '2rem',
@@ -278,7 +278,6 @@ const FinanceDash = () => {
               padding: '15px 40px',
               backgroundColor: '#ff4444',
               color: 'white',
-              border: 'none',
               borderRadius: '12px',
               cursor: 'pointer',
               fontSize: '1.3rem',

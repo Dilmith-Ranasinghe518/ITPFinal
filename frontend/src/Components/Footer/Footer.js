@@ -17,9 +17,9 @@ const Footer = () => {
             </p>
             <div className="flex space-x-4 pt-4">
               {[
-                { Icon: FaFacebook, color: 'hover:text-blue-500', href: '#' },
-                { Icon: FaWhatsapp, color: 'hover:text-green-500', href: '#' },
-                { Icon: FaInstagram, color: 'hover:text-pink-500', href: '#' }
+                { Icon: FaFacebook, color: 'hover:text-blue-500', href: 'https://facebook.com' },
+                { Icon: FaWhatsapp, color: 'hover:text-green-500', href: 'https://whatsapp.com' },
+                { Icon: FaInstagram, color: 'hover:text-pink-500', href: 'https://instagram.com' }
               ].map(({ Icon, color, href }, idx) => (
                 <a
                   key={idx}
@@ -55,7 +55,7 @@ const Footer = () => {
             <ul className="space-y-2">
               {['Home', 'About Us', 'Services', 'Contact'].map((link) => (
                 <li key={link}>
-                  <a href="#" className="text-gray-400 hover:text-secondary-400 transition-colors duration-200 flex items-center">
+                  <a href="/" className="text-gray-400 hover:text-secondary-400 transition-colors duration-200 flex items-center">
                     <span className="w-1.5 h-1.5 bg-secondary-500 rounded-full mr-2 opacity-0 hover:opacity-100 transition-opacity"></span>
                     {link}
                   </a>

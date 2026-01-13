@@ -1,6 +1,6 @@
 import React from "react";
 import MapComponent from "../MapComponent/MapComponent";
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { FaTrash, FaPlus, FaClipboardList, FaArrowLeft, FaSignOutAlt, FaMapMarkedAlt } from 'react-icons/fa';
 
 const RouteDashboard = () => {

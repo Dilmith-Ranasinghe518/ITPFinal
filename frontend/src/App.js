@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { UserProvider } from './Components/Dashboards/UserContext'; // Ensure UserContext is properly imported
 
 // Import Components for Inventory Section

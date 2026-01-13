@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom';
 // import Home from "../Home/Home";
 import UserDash from "../Dashboards/UserDash";
 import RecyclerDash from "../Dashboards/RecyclerDash";
-import WasteCollectorDash from "../Dashboards/WasteCollectorDash";
+
 import RecycleManagerDash from "../Dashboards/RecycleManagerDash";
 import HRDash from "../Dashboards/HRDash";
 import EmpDash from '../EmployeeDashboard/EmpDash';
