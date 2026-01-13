@@ -18,7 +18,7 @@ function UpdateInventory() {
   useEffect(() => {
     const fetchInventoryData = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/inventory/${id}`);
+        const response = await fetch(`http://localhost:5008/inventory/${id}`);
         const data = await response.json();
 
         if (response.ok) {
@@ -56,7 +56,7 @@ function UpdateInventory() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`http://localhost:5000/inventory/${id}`, {
+      const response = await fetch(`http://localhost:5008/inventory/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

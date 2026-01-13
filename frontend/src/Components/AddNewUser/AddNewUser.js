@@ -116,7 +116,7 @@ const AddNewUser = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:5000/employees", formData);
+      const response = await axios.post("http://localhost:5008/employees", formData);
       if (response.data.status === "success") {
         alert("✅ Employee added successfully!");
         navigate("/AdminDashboard"); 

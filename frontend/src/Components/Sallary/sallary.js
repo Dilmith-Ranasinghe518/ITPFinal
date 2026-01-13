@@ -8,7 +8,7 @@ function Salary() {
   const navigate = useNavigate();
   const [employees, setEmployees] = useState([]);
   const [selectedEmployeeId, setSelectedEmployeeId] = useState("");
-  const [basicSalary, setBasicSalary] = useState(50000);
+  const [basicSalary, setBasicSalary] = useState(50080);
   const [ot, setOt] = useState(0);
   const [leave, setLeave] = useState(0);
   const [holidays, setHolidays] = useState(0);
@@ -23,7 +23,7 @@ function Salary() {
 
   const fetchEmployees = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/employees");
+      const res = await axios.get("http://localhost:5008/employees");
       setEmployees(res.data.employees || []);
     } catch (error) {
       console.error("Error fetching employees", error);

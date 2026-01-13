@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { GoogleMap, LoadScript, Marker, InfoWindow } from "@react-google-maps/api";
 import axios from "axios";
-import "../MapComponent/MapComponent.css"; // You can reuse your existing CSS
+// import "../MapComponent/MapComponent.css"; // CSS Removed
 
 const containerStyle = {
   width: "100%",
@@ -34,7 +34,7 @@ const Location = () => {
 
   const fetchNormalBins = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/getBins");
+      const response = await axios.get("http://localhost:5008/api/getBins");
       const normal = response.data.filter((bin) => !bin.full);
       setNormalBins(normal);
     } catch (error) {
@@ -45,11 +45,11 @@ const Location = () => {
 
   return (
     <div className="map-page">
-<h2 style={{ textAlign: "center" }}>Locations</h2>
+      <h2 style={{ textAlign: "center" }}>Locations</h2>
 
 
       <LoadScript
-        googleMapsApiKey="AIzaSyDyH_WBDQnt9VlMYmnJ0itANXXmjaObbQI"
+        googleMapsApiKey="AIzaSyCQlsYyEJIRVQHAPUpvE54dtdOQNnKY3gM"
         onLoad={onGoogleMapsLoad}
       >
         <GoogleMap

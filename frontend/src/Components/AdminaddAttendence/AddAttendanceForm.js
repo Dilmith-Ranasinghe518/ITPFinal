@@ -39,7 +39,7 @@ const AdminAddAttendance = () => {
     }
 
     try {
-      await axios.post("http://localhost:5000/users", formData);
+      await axios.post("http://localhost:5008/users", formData);
       alert("✅ Attendance manually added!");
       navigate("/AdminAttend");
     } catch (err) {

@@ -25,7 +25,7 @@ function UpdateInventory() {
     useEffect(() => {
         const fetchHandler = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/inventory/${id}`);
+                const response = await axios.get(`http://localhost:5008/inventory/${id}`);
                 const item = response.data.inventory || response.data;
                 setInputs({
                     name: item.name || '',
@@ -143,7 +143,7 @@ function UpdateInventory() {
 
     const sendRequest = async () => {
         try {
-            await axios.put(`http://localhost:5000/inventory/${id}`, {
+            await axios.put(`http://localhost:5008/inventory/${id}`, {
                 name: String(inputs.name),
                 category: String(inputs.category),
                 unit: String(inputs.unit),

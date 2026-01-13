@@ -20,7 +20,7 @@ const Requestrouter = require("./Route/UserRequestRoute"); // Updated route impo
 
 // Create an Express app
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5008;
 
 // Middleware
 app.use(express.json()); // To parse JSON data
@@ -85,7 +85,7 @@ app.use('/api', wasteRoute);
 app.use("/userRequest", Requestrouter); 
 
 // Start the server
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5008;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
 module.exports = app; // For CommonJS export if needed

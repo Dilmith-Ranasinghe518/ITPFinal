@@ -1,9 +1,10 @@
 import React from 'react';
-import './CCHome.css';
 import Footer from '../Footer/Footer';
+import WhatsAppChat from "../WhatsAppChat/WhatsAppChat";
 import HomeNav from '../Nav/HomeNav';
 import Slider from "react-slick";
 import { useNavigate } from "react-router-dom";
+import { FaArrowRight } from "react-icons/fa";
 
 // Import slick-carousel CSS
 import "slick-carousel/slick/slick.css";
@@ -13,63 +14,89 @@ const CCHome = () => {
   const navigate = useNavigate();
 
   const settings = {
-    dots: true, // Enable dots navigation
-    infinite: true, // Infinite loop of images
-    speed: 500, // Transition speed
-    slidesToShow: 1, // Number of slides to show at once
-    slidesToScroll: 1, // Number of slides to scroll at once
-    autoplay: true, // Auto play the slider
-    autoplaySpeed: 3000, // Time between auto transitions
+    dots: true,
+    infinite: true,
+    speed: 800,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    fade: true,
+    cssEase: 'linear'
   };
 
+  const carouselImages = [
+    "p2.jpg", "p1.jpg", "p3.jpg", "p4.jpg", "p6.webp", "p7.avif", "p8.jpg", "p9.jpeg"
+  ];
+
   return (
-    <div className="home-container">
-      <HomeNav/>
+    <div className="flex flex-col min-h-screen bg-gray-50 pt-20">
+      <HomeNav />
 
-      {/* Image Slider */}
-      <section className="hero">  
-        <Slider {...settings}>
-        <div>
-            <img src="p2.jpg" alt="Waste Management 2" />
-          </div>
-
-
-          <div>
-            <img src="p1.jpg" alt="Waste Management 1" />
-          </div>
-          
-          <div>
-            <img src="p3.jpg" alt="Waste Management 3" />
-          </div>
-          <div>
-            <img src="p4.jpg" alt="Waste Management 4" />
-          </div>
-          <div>
-            <img src="p6.webp" alt="Waste Management 5" />
-          </div>
-          <div>
-            <img src="p7.avif" alt="Waste Management 6" />
-          </div>
-          <div>
-            <img src="p8.jpg" alt="Waste Management 7" />
-          </div>
-          <div>
-            <img src="p9.jpeg" alt="Waste Management 8" />
-          </div>
+      {/* Hero Section */}
+      <section className="relative w-full h-[600px] overflow-hidden">
+        <Slider {...settings} className="h-full">
+          {carouselImages.map((img, index) => (
+            <div key={index} className="h-[600px] relative outline-none">
+              <div className="absolute inset-0 bg-black/40 z-10"></div> {/* Overlay */}
+              <img
+                src={img}
+                alt={`Waste Management ${index + 1}`}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          ))}
         </Slider>
 
-        <h1>Welcome to Clean Cycle!</h1>
-        <h2>Smart Waste Management</h2>
-        <p>
-          At Clean Cycle, we revolutionize waste management with efficient, eco-friendly, and
-          tech-driven solutions. Our platform connects citizens, waste collectors, and recycling
-          facilities to ensure seamless waste disposal, optimized collection routes, and increased
-          recycling efforts.
-        </p>
-        <button className="read-more"onClick={() => navigate("/aboutus")}>Read more</button>
+        {/* Hero Content Overlay */}
+        <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-4">
+          <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-6 drop-shadow-lg tracking-tight">
+            Welcome to <span className="text-primary-400">Clean Cycle</span>!
+          </h1>
+          <h2 className="text-2xl md:text-3xl font-semibold text-gray-200 mb-8 drop-shadow-md">
+            Smart Waste Management
+          </h2>
+          <p className="max-w-2xl text-lg md:text-xl text-gray-100 mb-10 leading-relaxed drop-shadow-sm">
+            At Clean Cycle, we revolutionize waste management with efficient, eco-friendly, and
+            tech-driven solutions. Our platform connects citizens, waste collectors, and recycling
+            facilities to ensure seamless waste disposal.
+          </p>
+          <button
+            className="group inline-flex items-center w-fit bg-primary-600 hover:bg-primary-700 text-white font-bold py-2 px-6 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 hover:shadow-primary-500/50"
+            onClick={() => navigate("/aboutus")}
+          >
+            Read More
+            <FaArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+          </button>
+        </div>
       </section>
 
-      <Footer/>
+      {/* Features/Highlights Section (Optional addition for better homepage) */}
+      <section className="py-20 px-4 max-w-7xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl font-bold text-dark-900 mb-4">Why Choose Us?</h2>
+          <div className="w-20 h-1 bg-primary-500 mx-auto rounded-full"></div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          {[
+            { title: "Eco-Friendly", desc: "Sustainable solutions for a greener planet." },
+            { title: "Efficient", desc: "Optimized collection routes and schedules." },
+            { title: "Tech-Driven", desc: "Smart platform connecting all stakeholders." }
+          ].map((feature, idx) => (
+            <div key={idx} className="bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-100 transform hover:-translate-y-1">
+              <div className="w-16 h-16 bg-primary-50 rounded-2xl flex items-center justify-center mb-6 mx-auto text-primary-600 text-2xl font-bold">
+                {idx + 1}
+              </div>
+              <h3 className="text-xl font-bold text-dark-800 mb-4 text-center">{feature.title}</h3>
+              <p className="text-gray-600 text-center">{feature.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <WhatsAppChat />
+      <Footer />
     </div>
   );
 };

@@ -28,7 +28,7 @@ const EditUser = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:5000/employees/${user._id}`, user);
+      await axios.put(`http://localhost:5008/employees/${user._id}`, user);
       alert("Employee updated successfully!");
       localStorage.removeItem("editEmployee");
       navigate("/AdminD");

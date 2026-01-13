@@ -1,21 +1,64 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   BarChart, Bar, LineChart, Line, XAxis, YAxis,
-  Tooltip, ResponsiveContainer, CartesianGrid, PieChart, Pie, Cell
+  Tooltip, ResponsiveContainer, CartesianGrid, PieChart, Pie, Cell, Legend
 } from "recharts";
 import { jsPDF } from "jspdf";
 import 'jspdf-autotable';
-import './InventoryDetails.css';
+import { FaHome, FaPlus, FaRecycle, FaRoute, FaSignOutAlt, FaChartPie, FaChartLine, FaClipboardList, FaDownload } from 'react-icons/fa';
+// import './InventoryDetails.css'; // Removed external CSS
 
-const URL = "http://localhost:5000/inventory";
+const URL = "http://localhost:5008/inventory";
 
 const fetchHandler = async () => {
   return await axios.get(URL).then((res) => res.data);
 };
 
+// Sidebar Component
+const Sidebar = ({ navigate }) => (
+  <div className="w-64 bg-dark-900 text-white flex flex-col items-center py-8 shadow-2xl h-screen sticky top-0 group transition-all duration-300">
+    <div className="flex flex-col items-center mb-10 text-center">
+      <div className="w-12 h-12 bg-primary-500 rounded-xl flex items-center justify-center mb-4 shadow-lg shadow-primary-500/50">
+        <FaRecycle className="text-2xl text-white" />
+      </div>
+      <h1 className="text-xl font-bold tracking-wider uppercase">Clean Cycle</h1>
+      <p className="text-xs text-gray-400 mt-1">Admin Panel</p>
+    </div>
+
+    <nav className="w-full px-4 space-y-2 flex-grow">
+      <button onClick={() => navigate('/mainhome')} className="w-full flex items-center p-3 rounded-xl hover:bg-dark-800 text-gray-400 hover:text-white transition-all duration-200">
+        <FaHome className="mr-3 text-lg" /> Main Home
+      </button>
+      <button onClick={() => navigate('/additem')} className="w-full flex items-center p-3 rounded-xl hover:bg-dark-800 text-gray-400 hover:text-white transition-all duration-200">
+        <FaPlus className="mr-3 text-lg" /> Add Inventory
+      </button>
+      <button onClick={() => navigate('/recycledash')} className="w-full flex items-center p-3 rounded-xl hover:bg-dark-800 text-gray-400 hover:text-white transition-all duration-200">
+        <FaRecycle className="mr-3 text-lg" /> Recycler
+      </button>
+      <button onClick={() => navigate('/route')} className="w-full flex items-center p-3 rounded-xl hover:bg-dark-800 text-gray-400 hover:text-white transition-all duration-200">
+        <FaRoute className="mr-3 text-lg" /> Route Dashboard
+      </button>
+
+      <div className="py-4 mt-4 border-t border-dark-800">
+        <p className="px-4 text-xs font-semibold text-gray-500 uppercase mb-2">Reports</p>
+        <button className="w-full flex items-center p-3 rounded-xl bg-primary-600/10 text-primary-400 hover:bg-primary-600 hover:text-white transition-all duration-200 cursor-default">
+          <FaClipboardList className="mr-3 text-lg" /> Inventory Overview
+        </button>
+      </div>
+    </nav>
+
+    <div className="w-full px-4 mt-auto">
+      <button onClick={() => navigate('/logout')} className="w-full flex items-center justify-center p-3 rounded-xl bg-red-500/10 text-red-400 hover:bg-red-500 hover:text-white transition-all duration-200">
+        <FaSignOutAlt className="mr-2" /> Logout
+      </button>
+    </div>
+  </div>
+);
+
 function InventoryDetails() {
+  const navigate = useNavigate();
   const [inventory, setInventoryDetails] = useState([]);
   const [totals, setTotals] = useState([]);
   const [lowStockAlerts, setLowStockAlerts] = useState([]);
@@ -26,31 +69,23 @@ function InventoryDetails() {
   const [recycleData, setRecycleData] = useState([]);
   const [currentTime, setCurrentTime] = useState("");
   const [isDataUpdated, setIsDataUpdated] = useState(false);
-  // Recycling Estimation Input States
-const [userName, setUserName] = useState("");
-const [materialCategory, setMaterialCategory] = useState("");
-const [materialAmount, setMaterialAmount] = useState("");
-const [recycleResult, setRecycleResult] = useState(null);
 
+  // Recycling Estimation Input States
+  const [userName, setUserName] = useState("");
+  const [materialCategory, setMaterialCategory] = useState("");
+  const [materialAmount, setMaterialAmount] = useState("");
+  const [recycleResult, setRecycleResult] = useState(null);
 
   useEffect(() => {
     loadInventoryData();
-
     const timer = setInterval(() => {
       const now = new Date().toLocaleString("en-LK", {
         timeZone: "Asia/Colombo",
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-        hour12: true
+        weekday: "long", year: "numeric", month: "long", day: "numeric",
+        hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: true
       });
       setCurrentTime(now);
     }, 1000);
-
     return () => clearInterval(timer);
   }, []);
 
@@ -63,7 +98,7 @@ const [recycleResult, setRecycleResult] = useState(null);
 
   const fetchRecycleData = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/recycle");
+      const res = await axios.get("http://localhost:5008/recycle");
       setRecycleData(res.data);
     } catch (err) {
       console.error("Error fetching recycled data:", err);
@@ -73,31 +108,26 @@ const [recycleResult, setRecycleResult] = useState(null);
   const loadInventoryData = () => {
     fetchHandler().then((data) => {
       let updatedInventory = [];
-  
       data.inventory.forEach(item => {
         const existingItemIndex = updatedInventory.findIndex(
           (i) => i.name === item.name && i.category === item.category
         );
-  
         if (existingItemIndex !== -1) {
           updatedInventory[existingItemIndex].quantity += item.quantity;
         } else {
           updatedInventory.push(item);
         }
       });
-  
-      // Update unit to 'MT' if quantity > 1000kg and convert quantity to metric tons
+
       updatedInventory = updatedInventory.map(item => {
         if (item.unit === "kg" && item.quantity > 1000) {
           item.unit = "MT";
-          item.quantity = (item.quantity / 1000).toFixed(2); // Convert to metric tons with 2 decimal places
+          item.quantity = (item.quantity / 1000).toFixed(2);
         }
         return item;
       });
-  
       setInventoryDetails(updatedInventory);
-  
-      // Calculate totals for the categories (keep track of units here as well)
+
       const categoryTotals = updatedInventory.reduce((acc, item) => {
         if (acc[item.category]) {
           acc[item.category].quantity += item.quantity;
@@ -105,53 +135,43 @@ const [recycleResult, setRecycleResult] = useState(null);
           acc[item.category] = {
             category: item.category,
             quantity: item.quantity,
-            unit: item.unit, // Capture the unit for each category
+            unit: item.unit,
           };
         }
         return acc;
       }, {});
-  
+
       const chartData = Object.keys(categoryTotals).map((category) => ({
         category,
         quantity: categoryTotals[category].quantity,
-        unit: categoryTotals[category].unit, // Add the unit to the chart data
+        unit: categoryTotals[category].unit,
       }));
-  
       setTotals(chartData);
-  
-      // Check for low stock items
+
       const lowStock = chartData.filter(item => item.quantity <= 500);
       setLowStockAlerts(lowStock);
-  
-      // Waste prediction (e.g. 10% of quantity)
+
       const predictedWaste = chartData.map((item) => ({
         category: item.category,
         predictedWaste: item.quantity * 0.1
       }));
-  
       setWastePredictionData(predictedWaste);
     });
-  
     fetchRecycleData();
   };
-  
 
   const getStatus = (quantity) => {
-    if (quantity <= 500) return { message: "Low Stock! Urgent Restock Needed", color: "bg-red-500" };
-    if (quantity > 500 && quantity <= 800) return { message: "Stock Level Moderate", color: "bg-yellow-500" };
-    if (quantity > 800 || (quantity >= 1 && quantity <= 10)) return { message: "Stock is Well Maintained", color: "bg-blue-500" };
-    return { message: "Stock Level Normal", color: "bg-green-500" };
+    if (quantity <= 500) return { message: "Low Stock! Urgent Restock Needed", color: "text-red-600 bg-red-100 border-red-200" };
+    if (quantity > 500 && quantity <= 800) return { message: "Stock Level Moderate", color: "text-yellow-600 bg-yellow-100 border-yellow-200" };
+    if (quantity > 800 || (quantity >= 1 && quantity <= 10)) return { message: "Stock is Well Maintained", color: "text-blue-600 bg-blue-100 border-blue-200" };
+    return { message: "Stock Level Normal", color: "text-green-600 bg-green-100 border-green-200" };
   };
-
-
-
 
   const deleteHandler = async (id) => {
     const confirmDelete = window.confirm("Are you sure you want to delete this?");
     if (!confirmDelete) return;
-
     try {
-      await axios.delete(`http://localhost:5000/inventory/${id}`);
+      await axios.delete(`http://localhost:5008/inventory/${id}`);
       setInventoryDetails((prevInventory) => prevInventory.filter(item => item._id !== id));
       setIsDataUpdated(true);
     } catch (error) {
@@ -159,63 +179,34 @@ const [recycleResult, setRecycleResult] = useState(null);
     }
   };
 
-
   const handleRecycleEstimation = () => {
     if (!userName || !materialCategory || !materialAmount) {
       alert("Please fill all fields: Name, Category, and Amount.");
       return;
     }
-  
     const amount = parseFloat(materialAmount);
     if (isNaN(amount) || amount <= 0) {
       alert("Please enter a valid positive amount.");
       return;
     }
-  
     let recycledAmount = 0;
     let description = "";
-  
     switch (materialCategory) {
-      case "Plastic":
-        recycledAmount = amount * 0.92; // about 92% efficient
-        description = "Plastic can typically be recycled with a 90-95% efficiency, depending on cleanliness.";
-        break;
-      case "Polythene":
-        recycledAmount = amount * 0.9; // about 90% efficiency
-        description = "Polythene recycling depends on cleanliness and type; clean polythene can recover up to 90%.";
-        break;
-      case "Organic":
-        recycledAmount = amount * 0.35; // compost weight after water loss
-        description = "Organic waste reduces in weight significantly during composting, resulting in around 30-40% compost.";
-        break;
-      case "Metal":
-        recycledAmount = amount * 0.99; // nearly full recovery
-        description = "Metals like aluminum and steel have almost 100% recycling efficiency, saving significant energy.";
-        break;
-      default:
-        alert("Invalid material category.");
-        return;
+      case "Plastic": recycledAmount = amount * 0.92; description = "Plastic can typically be recycled with a 90-95% efficiency."; break;
+      case "Polythene": recycledAmount = amount * 0.9; description = "Clean polythene can recover up to 90%."; break;
+      case "Organic": recycledAmount = amount * 0.35; description = "Organic waste reduces significantly during composting."; break;
+      case "Metal": recycledAmount = amount * 0.99; description = "Metals have almost 100% recycling efficiency."; break;
+      default: alert("Invalid material category."); return;
     }
-  
     setRecycleResult({
-      userName,
-      category: materialCategory,
-      inputAmount: amount.toFixed(2),
-      recycledAmount: recycledAmount.toFixed(2),
-      description
+      userName, category: materialCategory, inputAmount: amount.toFixed(2), recycledAmount: recycledAmount.toFixed(2), description
     });
-  
-    // Clear input fields
-    setUserName("");
-    setMaterialCategory("");
-    setMaterialAmount("");
+    setUserName(""); setMaterialCategory(""); setMaterialAmount("");
   };
-  
 
   const getBase64ImageFromURL = async (url) => {
     const res = await fetch(url);
     const blob = await res.blob();
-  
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.onloadend = () => resolve(reader.result);
@@ -223,434 +214,340 @@ const [recycleResult, setRecycleResult] = useState(null);
       reader.readAsDataURL(blob);
     });
   };
-  
 
   const downloadReport = async () => {
     const doc = new jsPDF();
-  
-    // Convert public/logo.png to Base64 and add to PDF
-    const logoImg = await getBase64ImageFromURL("/logo.jpeg");
-    doc.addImage(logoImg, 'JPEG', 150, 10, 40, 20); // Adjust size and position as needed
-  
-    const currentDate = new Date().toLocaleString("en-LK", {
-      timeZone: "Asia/Colombo",
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-      hour12: true
-    });
-  
+    const logoImg = await getBase64ImageFromURL("/logo.jpeg"); // Ensure this path is correct
+    doc.addImage(logoImg, 'JPEG', 150, 10, 40, 20);
+    const currentDate = new Date().toLocaleString("en-LK", { timeZone: "Asia/Colombo", dateStyle: 'full', timeStyle: 'medium' });
     const userName = "Inventory Manager - D.Ranasinghe";
-  
-    doc.setFontSize(16);
-    doc.text("Clean Cycle", 14, 20);
-    doc.setFontSize(12);
-    doc.text("Address: 1234 Galle Municipal Council, Galle Road, Galle, Sri Lanka", 14, 28);
-    doc.text("Email: contact@cleancycle.lk", 14, 34);
-    doc.text("Telephone: +94 912 248 008", 14, 40);
-    doc.text(`Report Generated by: ${userName}`, 14, 46);
-    doc.text(`Date and Time of Report: ${currentDate}`, 14, 52);
-  
-    doc.setFontSize(18);
-    doc.text("Inventory Report", 14, 70);
-  
-    doc.setFontSize(12);
-    doc.text("Total Quantity by Category:", 14, 80);
+
+    doc.setFontSize(16); doc.text("Clean Cycle", 14, 20);
+    doc.setFontSize(12); doc.text("Address: Galle Municipal Council, Galle, Sri Lanka", 14, 28);
+    doc.text("Email: contact@cleancycle.lk", 14, 34); doc.text("Telephone: +94 912 248 008", 14, 40);
+    doc.text(`Report Generated by: ${userName}`, 14, 46); doc.text(`Date: ${currentDate}`, 14, 52);
+
+    doc.setFontSize(18); doc.text("Inventory Report", 14, 70);
+    doc.setFontSize(12); doc.text("Total Quantity by Category:", 14, 80);
     let yOffset = 90;
     totals.forEach(item => {
       doc.text(`${item.category}: ${item.quantity} ${item.unit}`, 14, yOffset);
       yOffset += 10;
     });
-  
-    yOffset += 15;
+
     if (lowStockAlerts.length > 0) {
+      yOffset += 10;
+      doc.setTextColor(255, 0, 0);
       doc.text(`Low Stock Alerts:`, 14, yOffset);
+      doc.setTextColor(0, 0, 0);
       yOffset += 10;
       lowStockAlerts.forEach(item => {
         doc.text(`${item.category}: ${item.quantity} ${item.unit}`, 14, yOffset);
         yOffset += 10;
       });
     }
-  
-    yOffset += 15;
-    doc.text("Inventory Items Table:", 14, yOffset);
+
     yOffset += 10;
     doc.autoTable({
       startY: yOffset,
-      head: [["ID", "Name", "Category", "Unit", "Quantity", "Description"]],
-      body: inventory.map(item => [
-        item._id, item.name, item.category, item.unit, item.quantity, item.description
-      ])
+      head: [["Name", "Category", "Unit", "Quantity", "Description"]],
+      body: inventory.map(item => [item.name, item.category, item.unit, item.quantity, item.description])
     });
-  
     doc.save("inventory_report_clean_cycle.pdf");
   };
-  
+
   const downloadRecycleReport = () => {
     const doc = new jsPDF();
-    
-    const currentDate = new Date().toLocaleString("en-LK", {
-      timeZone: "Asia/Colombo",
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-      hour12: true
-    });
-    const userName = "Inventory Manager - D.Ranasinghe "; 
-  
-    // Setting the font size and title
-    doc.setFontSize(16);
-    doc.text("Clean Cycle", 14, 20);
-    
-    doc.setFontSize(12);
-    doc.text("Address: 1234 Galle Municipal Council, Galle Road, Galle, Sri Lanka", 14, 28);
-    doc.text("Email: contact@cleancycle.lk", 14, 34);
-    doc.text("Telephone: +94 912 248 008", 14, 40);
-    doc.text(`Report Generated by: ${userName}`, 14, 46);
-    doc.text(`Date and Time of Report: ${currentDate}`, 14, 52);
-  
-    // Add some extra space before the "Recycle Report" section
-    let yOffset = 60;
-    doc.setFontSize(18);
-    doc.text("Recycle Report", 14, yOffset);
-    
-    // Add some more space before listing recycled items
-    yOffset += 10; // Increase space between the title and body content
-    doc.setFontSize(12);
-    doc.text("Recycled Items by Category:", 14, yOffset);
-  
-    // Add space between the section title and table
-    yOffset += 20; // Additional space for the table
-  
+    const currentDate = new Date().toLocaleString("en-LK", { timeZone: "Asia/Colombo", dateStyle: 'full', timeStyle: 'medium' });
+    const userName = "Inventory Manager - D.Ranasinghe ";
+
+    doc.setFontSize(16); doc.text("Clean Cycle", 14, 20);
+    doc.setFontSize(18); doc.text("Recycle Report", 14, 40);
+    doc.setFontSize(12); doc.text(`Generated by: ${userName}`, 14, 50); doc.text(`Date: ${currentDate}`, 14, 56);
+
     doc.autoTable({
-      startY: yOffset,
+      startY: 70,
       head: [["Category", "Quantity (kg)", "Transferred At"]],
-      body: recycleData.map(item => [
-        item.category,
-        item.quantity,
-        new Date(item.transferredAt).toLocaleString()
-      ])
+      body: recycleData.map(item => [item.category, item.quantity, new Date(item.transferredAt).toLocaleString()])
     });
-  
-    // Add more space after the table before the footer (optional)
-    yOffset = doc.autoTable.previous.finalY + 20; // Move down after the table
-  
-    // Optional footer or additional sections (if needed)
-   
-  
     doc.save("recycle_report.pdf");
   };
-  
 
   const handleSelectiveRecycle = async () => {
-    if (!selectedCategory || !recycleQuantity) {
-      alert("Please select a category and enter a quantity.");
-      return;
-    }
-
+    if (!selectedCategory || !recycleQuantity) { alert("Please select a category and enter a quantity."); return; }
     const matchingCategory = totals.find(item => item.category === selectedCategory);
-    if (!matchingCategory || recycleQuantity > matchingCategory.quantity) {
-      alert("Invalid quantity. Cannot recycle more than available.");
-      return;
-    }
+    if (!matchingCategory || recycleQuantity > matchingCategory.quantity) { alert("Invalid quantity."); return; }
 
     try {
-      await axios.post("http://localhost:5000/recycle", {
-        recycledData: [{ category: selectedCategory, quantity: parseFloat(recycleQuantity) }]
-      });
-
-      alert("♻️ Successfully transferred selected quantity to recycle table.");
-      setSelectedCategory("");
-      setRecycleQuantity("");
-      loadInventoryData();
-      setIsDataUpdated(true);
+      await axios.post("http://localhost:5008/recycle", { recycledData: [{ category: selectedCategory, quantity: parseFloat(recycleQuantity) }] });
+      alert("♻️ Successfully transferred to recycle.");
+      setSelectedCategory(""); setRecycleQuantity("");
+      loadInventoryData(); setIsDataUpdated(true);
     } catch (error) {
-      console.error("Error transferring selective recycle:", error);
-      alert("Error transferring data to recycle table.");
+      console.error("Error transferring recycle:", error);
     }
   };
 
   const filteredInventory = inventory.filter(item =>
     item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    item.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    item.unit.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    item.description.toLowerCase().includes(searchQuery.toLowerCase())
+    item.category.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
-    <div className="dashboard-container inventory-details">
-      <div className="inventory-details-sidebar">
-        <div className="inventory-details-sidebar-time">
-          <p className="inventory-details-sidebar-time-title">📅 Sri Lanka Date & Time</p>
-          <p className="inventory-details-sidebar-time-value">{currentTime}</p>
-        </div>
-        <h2 className="inventory-details-logo">Inventory Dashboard</h2>
-        <ul style={{ listStyle: "none", padding: 0, marginTop: "1rem", display: "flex",  flexDirection: "column", gap: "1rem" }}>
-          <li><a href="/mainhome" className="inventory-details-sidebar-link">🏠 Main Home</a></li>
-          <li><a href="/additem" className="inventory-details-sidebar-link">➕ Add Inventory</a></li>
-          <li><a href="/recycledash" className="inventory-details-sidebar-link">♻️ Recycler</a></li>
-          <li><a href="/route" className="inventory-details-sidebar-link">🛣️ Route Dashboard</a></li>
-          <li><a href="/logout" className="inventory-details-sidebar-link">⏻  Log out</a></li>
-        </ul>
-      </div>
+    <div className="flex bg-gray-50 min-h-screen font-sans">
+      <Sidebar navigate={navigate} />
 
-      <div className="inventory-details-content-area">
-        <h1>Inventory Details Page</h1>
-
-        {lowStockAlerts.length > 0 && (
-          <div className="inventory-details-alert-box">
-            ⚠ Warning! Low stock in: {lowStockAlerts.map(item => item.category).join(", ")}
+      <div className="flex-1 flex flex-col h-screen overflow-hidden">
+        {/* Header */}
+        <header className="bg-white shadow-sm py-4 px-8 flex justify-between items-center z-10">
+          <div>
+            <h2 className="text-2xl font-bold text-dark-900">Inventory Dashboard</h2>
+            <p className="text-sm text-gray-500">{currentTime}</p>
           </div>
-        )}
-
-        <div className="inventory-details-charts-container">
-          <div className="inventory-details-chart-item">
-            <h2 className="inventory-details-chart-title">📊 Inventory Overview</h2>
-            <ResponsiveContainer width="100%" height={300}>
-              <BarChart data={totals}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="category" />
-                <YAxis />
-                <Tooltip />
-                <Bar dataKey="quantity" fill="#34D399" barSize={50} radius={[8, 8, 0, 0]} />
-              </BarChart>
-            </ResponsiveContainer>
+          <div className="flex items-center space-x-3">
+            <div className="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center text-primary-600 font-bold">DR</div>
+            <span className="font-medium text-dark-700">Dilmith Ranasinghe</span>
           </div>
+        </header>
 
-          <div className="inventory-details-chart-item">
-            <h2 className="inventory-details-chart-title">🔮 Waste Prediction</h2>
-            <ResponsiveContainer width="100%" height={300}>
-              <LineChart data={wastePredictionData}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="category" />
-                <YAxis />
-                <Tooltip />
-                <Line type="monotone" dataKey="predictedWaste" stroke="#FF6347" dot={false} />
-              </LineChart>
-            </ResponsiveContainer>
-          </div>
-
-          <div className="inventory-details-chart-item">
-  <h2 className="inventory-details-chart-title">📊 Inventory Distribution by Category</h2>
-  <ResponsiveContainer width="100%" height={300}>
-    <PieChart>
-      <Pie
-        data={totals}
-        dataKey="quantity"
-        nameKey="category"
-        outerRadius={100}
-        label
-      >
-        {totals.map((entry, index) => {
-          // Get the stock status based on the quantity
-          const status = getStatus(entry.quantity, entry.unit); 
-
-          // Assign colors based on stock status
-          let color = "#34D399"; // Default green (normal stock)
-          if (status.color === "bg-red-500") color = "#FF6347"; // Red for low stock
-          if (status.color === "bg-yellow-500") color = "#FFD700"; // Yellow for moderate stock
-          if (status.color === "bg-blue-500") color = "#1E90FF"; // Blue for well maintained stock
-
-          return <Cell key={`cell-${index}`} fill={color} />;
-        })}
-      </Pie>
-      <Tooltip />
-    </PieChart>
-  </ResponsiveContainer>
-</div>
-</div>
-
-        <div className="inventory-details-status-cards">
-          {totals.map((item, index) => {
-            const status = getStatus(item.quantity);
-            return (
-              <div key={index} className={`inventory-details-status-card inventory-details-${status.color}`}>
-                <h3 className="inventory-details-status-category">{item.category}</h3>
-                <p className="inventory-details-status-message">{status.message}</p>
-                <p className="inventory-details-status-quantity">{item.quantity} {item.unit}</p>
+        <main className="flex-1 overflow-x-hidden overflow-y-auto p-8 space-y-8">
+          {/* Alerts */}
+          {lowStockAlerts.length > 0 && (
+            <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded-r-lg shadow-sm flex items-start animate-pulse">
+              <div className="flex-shrink-0">
+                <FaClipboardList className="h-5 w-5 text-red-500" />
               </div>
-            );
-          })}
-        </div>
+              <div className="ml-3">
+                <h3 className="text-sm font-medium text-red-800">Low Stock Alert</h3>
+                <div className="mt-2 text-sm text-red-700">
+                  <p>Following categories are running low: <strong>{lowStockAlerts.map(item => item.category).join(", ")}</strong></p>
+                </div>
+              </div>
+            </div>
+          )}
 
-        <div className="inventory-details-search-container">
-          <input
-            type="text"
-            placeholder="Search inventory..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="inventory-details-search-input"
-          />
-        </div>
+          {/* Stats Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {totals.map((item, index) => {
+              const status = getStatus(item.quantity);
+              return (
+                <div key={index} className={`bg-white rounded-2xl shadow-sm p-6 border transition-all duration-300 hover:shadow-md ${status.color.replace('bg-', 'border-').split(' ')[2]}`}>
+                  <div className="flex justify-between items-start mb-4">
+                    <h3 className="font-bold text-dark-700 text-lg">{item.category}</h3>
+                    <span className={`px-2 py-1 rounded text-xs font-bold uppercase ${status.color.split(' ')[1]} ${status.color.split(' ')[0]}`}>
+                      {item.unit}
+                    </span>
+                  </div>
+                  <p className="text-3xl font-extrabold text-dark-900 mb-2">{item.quantity}</p>
+                  <p className={`text-xs font-medium ${status.color.split(' ')[0]}`}>{status.message}</p>
+                </div>
+              );
+            })}
+          </div>
 
-        <div className="inventory-details-table-container">
-          <h2 className="inventory-details-table-title">📋 Inventory Items</h2>
-          <table className="inventory-details-table">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Category</th>
-                <th>Unit</th>
-                <th>Quantity</th>
-                <th>Description</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredInventory.map((item, index) => (
-                <tr key={index}>
-                  <td>{item._id}</td>
-                  <td>{item.name}</td>
-                  <td>{item.category}</td>
-                  <td>{item.unit}</td>
-                  <td>{item.quantity}</td>
-                  <td>{item.description}</td>
-                  <td>
-                    <div className="inventory-details-actions">
-                      <Link to={`/inventory/${item._id}`} className="inventory-details-update-button">Update</Link>
-                      <button onClick={() => deleteHandler(item._id)} className="inventory-details-delete-button">Delete</button>
-                    </div>
-                  </td>
+          {/* Charts */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-lg font-bold text-dark-800 flex items-center"><FaChartPie className="mr-2 text-primary-500" /> Distribution</h3>
+              </div>
+              <div className="h-72">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={totals}>
+                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f3f4f6" />
+                    <XAxis dataKey="category" axisLine={false} tickLine={false} />
+                    <YAxis axisLine={false} tickLine={false} />
+                    <Tooltip contentStyle={{ borderRadius: '10px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }} />
+                    <Bar dataKey="quantity" fill="#22c55e" radius={[6, 6, 0, 0]} barSize={40} />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-lg font-bold text-dark-800 flex items-center"><FaChartLine className="mr-2 text-red-500" /> Waste Prediction</h3>
+              </div>
+              <div className="h-72">
+                <ResponsiveContainer width="100%" height="100%">
+                  <LineChart data={wastePredictionData}>
+                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f3f4f6" />
+                    <XAxis dataKey="category" axisLine={false} tickLine={false} />
+                    <YAxis axisLine={false} tickLine={false} />
+                    <Tooltip contentStyle={{ borderRadius: '10px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }} />
+                    <Line type="monotone" dataKey="predictedWaste" stroke="#ef4444" strokeWidth={3} dot={{ r: 4 }} activeDot={{ r: 6 }} />
+                  </LineChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+          </div>
+
+          {/* Inventory Table */}
+          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+            <div className="p-6 border-b border-gray-100 flex flex-col md:flex-row justify-between items-center gap-4">
+              <h3 className="text-xl font-bold text-dark-900">Inventory Items</h3>
+              <div className="relative w-full md:w-64">
+                <input
+                  type="text"
+                  placeholder="Search items..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                />
+                <FaClipboardList className="absolute left-3 top-3 text-gray-400" />
+              </div>
+            </div>
+
+            <div className="overflow-x-auto">
+              <table className="w-full text-left border-collapse">
+                <thead>
+                  <tr className="bg-gray-50 text-gray-600 uppercase text-xs font-bold tracking-wider">
+                    <th className="p-4 border-b border-gray-100">Name</th>
+                    <th className="p-4 border-b border-gray-100">Category</th>
+                    <th className="p-4 border-b border-gray-100">Unit</th>
+                    <th className="p-4 border-b border-gray-100">Quantity</th>
+                    <th className="p-4 border-b border-gray-100">Description</th>
+                    <th className="p-4 border-b border-gray-100 text-right">Actions</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-100">
+                  {filteredInventory.length > 0 ? (
+                    filteredInventory.map((item, index) => (
+                      <tr key={index} className="hover:bg-gray-50 transition-colors">
+                        <td className="p-4 font-medium text-dark-900">{item.name}</td>
+                        <td className="p-4 text-gray-600">
+                          <span className="px-2 py-1 bg-gray-100 rounded text-xs font-semibold">{item.category}</span>
+                        </td>
+                        <td className="p-4 text-gray-600">{item.unit}</td>
+                        <td className="p-4 font-bold text-primary-600">{item.quantity}</td>
+                        <td className="p-4 text-gray-500 text-sm max-w-xs truncate">{item.description}</td>
+                        <td className="p-4 text-right space-x-2">
+                          <Link to={`/inventory/${item._id}`} className="px-3 py-1 bg-blue-50 text-blue-600 hover:bg-blue-100 rounded-md text-sm font-medium transition-colors">Edit</Link>
+                          <button onClick={() => deleteHandler(item._id)} className="px-3 py-1 bg-red-50 text-red-600 hover:bg-red-100 rounded-md text-sm font-medium transition-colors">Delete</button>
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr><td colSpan="6" className="p-8 text-center text-gray-500">No items found.</td></tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* Recycling Sections Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Transfer to Recycle */}
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+              <h3 className="text-lg font-bold text-dark-900 mb-4 flex items-center"><FaRecycle className="mr-2 text-green-500" /> Transfer to Recycle</h3>
+              <div className="space-y-4">
+                <select
+                  value={selectedCategory}
+                  onChange={(e) => setSelectedCategory(e.target.value)}
+                  className="w-full p-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-primary-500 bg-gray-50"
+                >
+                  <option value="">Select Category</option>
+                  {totals.map((item, i) => <option key={i} value={item.category}>{item.category}</option>)}
+                </select>
+                <input
+                  type="number"
+                  placeholder="Enter quantity"
+                  value={recycleQuantity}
+                  onChange={(e) => setRecycleQuantity(e.target.value)}
+                  className="w-full p-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-primary-500 bg-gray-50"
+                />
+                <button
+                  onClick={handleSelectiveRecycle}
+                  className="w-full py-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold rounded-lg hover:shadow-lg transition-all transform hover:-translate-y-0.5"
+                >
+                  Transfer Items
+                </button>
+              </div>
+            </div>
+
+            {/* Estimation Calculator */}
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+              <h3 className="text-lg font-bold text-dark-900 mb-4 flex items-center">🧮 Recycle Estimator</h3>
+              <div className="space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <input
+                    type="text"
+                    placeholder="Waste Type"
+                    value={userName}
+                    onChange={(e) => /^[A-Za-z\s]*$/.test(e.target.value) && setUserName(e.target.value)}
+                    className="p-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-primary-500 bg-gray-50"
+                  />
+                  <input
+                    type="number"
+                    placeholder="Amount (kg)"
+                    value={materialAmount}
+                    onChange={(e) => (/^[1-9][0-9]{0,4}$/.test(e.target.value) || e.target.value === "") && setMaterialAmount(e.target.value)}
+                    className="p-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-primary-500 bg-gray-50"
+                  />
+                </div>
+                <select
+                  value={materialCategory}
+                  onChange={(e) => setMaterialCategory(e.target.value)}
+                  className="w-full p-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-primary-500 bg-gray-50"
+                >
+                  <option value="">Select Material Category</option>
+                  <option value="Plastic">Plastic</option>
+                  <option value="Polythene">Polythene</option>
+                  <option value="Organic">Organic</option>
+                  <option value="Metal">Metal</option>
+                </select>
+                <button
+                  onClick={handleRecycleEstimation}
+                  className="w-full py-3 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-bold rounded-lg hover:shadow-lg transition-all transform hover:-translate-y-0.5"
+                >
+                  Calculate Estimate
+                </button>
+              </div>
+              {recycleResult && (
+                <div className="mt-4 p-4 bg-blue-50 rounded-lg text-sm text-blue-800 border border-blue-100 animate-fadeIn">
+                  <p><strong>Result for:</strong> {recycleResult.userName}</p>
+                  <p><strong>Estimated Recovery:</strong> {recycleResult.recycledAmount} kg</p>
+                  <p className="text-xs mt-1 italic">{recycleResult.description}</p>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Recycled Items Table */}
+          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+            <div className="p-6 border-b border-gray-100">
+              <h3 className="text-xl font-bold text-dark-900">♻️ Recycled History</h3>
+            </div>
+            <table className="w-full text-left border-collapse">
+              <thead>
+                <tr className="bg-gray-50 text-gray-600 uppercase text-xs font-bold tracking-wider">
+                  <th className="p-4 border-b border-gray-100">Category</th>
+                  <th className="p-4 border-b border-gray-100">Quantity (kg)</th>
+                  <th className="p-4 border-b border-gray-100">Date</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody className="divide-y divide-gray-100">
+                {recycleData.map((item, index) => (
+                  <tr key={index} className="hover:bg-gray-50">
+                    <td className="p-4">{item.category}</td>
+                    <td className="p-4 font-medium text-green-600">{item.quantity}</td>
+                    <td className="p-4 text-gray-500">{new Date(item.transferredAt).toLocaleDateString()}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
 
-        <div className="inventory-details-recycle-form">
-          <h2 style={{ textAlign: "center" }}>♻️ Recycle Inventory by Category</h2>
-          
-          <div className="inventory-details-recycle-form">
-            <select
-              value={selectedCategory}
-              onChange={(e) => setSelectedCategory(e.target.value)}
-              className="inventory-details-recycle-select"
-            >
-              <option value="">Select Category</option>
-              {totals.map((item, index) => (
-                <option key={index} value={item.category}>
-                  {item.category}
-                </option>
-              ))}
-            </select>
-
-            <input
-              type="number"
-              placeholder="Enter quantity to recycle"
-              value={recycleQuantity}
-              onChange={(e) => setRecycleQuantity(e.target.value)}
-              className="inventory-details-recycle-input"
-            />
-
-            <button onClick={handleSelectiveRecycle} className="inventory-details-recycle-button">
-              Transfer to Recycle
+          {/* Download Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-end pt-4 pb-12">
+            <button onClick={downloadReport} className="flex items-center px-6 py-3 bg-dark-800 hover:bg-dark-900 text-white rounded-xl font-bold shadow-lg transition-transform hover:-translate-y-0.5">
+              <FaDownload className="mr-2" /> Download Inventory Report
+            </button>
+            <button onClick={downloadRecycleReport} className="flex items-center px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-xl font-bold shadow-lg transition-transform hover:-translate-y-0.5">
+              <FaDownload className="mr-2" /> Download Recycle Report
             </button>
           </div>
-        </div>
-
-        <div className="inventory-details-table-container">
-          <h2 className="inventory-details-table-title">♻️ Recycled Items</h2>
-          <table className="inventory-details-table">
-            <thead>
-              <tr>
-                <th>Category</th>
-                <th>Quantity</th>
-                <th>Transferred At</th>
-              </tr>
-            </thead>
-            <tbody>
-              {recycleData.length === 0 ? (
-                <tr>
-                  <td colSpan="3">No recycled items yet.</td>
-                </tr>
-              ) : (
-                recycleData.map((item, index) => (
-                  <tr key={index}>
-                    <td>{item.category}</td>
-                    <td>{item.quantity} kg</td>
-                    <td>{new Date(item.transferredAt).toLocaleString()}</td>
-                  </tr>
-                ))
-              )}
-            </tbody>
-          </table>
-        </div>
-
-        <div className="inventory-details-selective-recycle-box">
-        <h2>♻️ Recycle Estimation Calculator</h2>
-<div className="inventory-details-recycle-form">
-  <input
-    type="text"
-    placeholder="Enter waste type"
-    value={userName}
-    onChange={(e) => {
-      const value = e.target.value;
-      // Allow only letters and spaces
-      if (/^[A-Za-z\s]*$/.test(value)) {
-        setUserName(value);
-      }
-    }}
-    className="inventory-details-recycle-input"
-  />
-  
-  <select
-    value={materialCategory}
-    onChange={(e) => setMaterialCategory(e.target.value)}
-    className="inventory-details-recycle-select"
-  >
-    <option value="">Select Material Category</option>
-    <option value="Plastic">Plastic</option>
-    <option value="Polythene">Polythene</option>
-    <option value="Organic">Organic</option>
-    <option value="Metal">Metal</option>
-  </select>
-
-  <input
-    type="number"
-    placeholder="Enter amount (kg)"
-    value={materialAmount}
-    onChange={(e) => {
-      const value = e.target.value;
-      // Prevent first digit 0 and allow only numbers between 1-99999
-      if (/^[1-9][0-9]{0,4}$/.test(value) || value === "") {
-        setMaterialAmount(value);
-      }
-    }}
-    className="inventory-details-recycle-input"
-  />
-
-  <button onClick={handleRecycleEstimation} className="inventory-details-recycle-button">
-    Estimate Recyclable Amount
-  </button>
-</div>
-
-{recycleResult && (
-  <div className="inventory-details-recycle-result">
-    <h3>🔍 Result for {recycleResult.userName}</h3>
-    <p><strong>Category:</strong> {recycleResult.category}</p>
-    <p><strong>Input Amount:</strong> {recycleResult.inputAmount} kg</p>
-    <p><strong>Estimated Recycled Amount:</strong> {recycleResult.recycledAmount} kg</p>
-    <p><strong>Description:</strong> {recycleResult.description}</p>
-  </div>
-)}
-</div>
-
-
-
-
-        <div className="inventory-details-download-button">
-          <button onClick={downloadReport}>Download Inventory Report</button>
-          <button onClick={downloadRecycleReport}>Download Recycle Report</button>
-        </div>
+        </main>
       </div>
     </div>
   );

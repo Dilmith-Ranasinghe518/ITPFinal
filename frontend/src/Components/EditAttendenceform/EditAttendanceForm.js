@@ -20,7 +20,7 @@ const EditAttendanceForm = () => {
 
   const fetchAttendance = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/users/${id}`);
+      const res = await axios.get(`http://localhost:5008/users/${id}`);
       setFormData(res.data.user);
     } catch (err) {
       console.error("❌ Failed to fetch data", err);
@@ -35,7 +35,7 @@ const EditAttendanceForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:5000/users/${id}`, formData);
+      await axios.put(`http://localhost:5008/users/${id}`, formData);
       alert("✅ Attendance updated successfully!");
       navigate("/AdminAttend");
     } catch (err) {

@@ -81,7 +81,7 @@ function AddBid() {
     };
 
     const sendRequest = async () => {
-        await axios.post("http://localhost:5000/admin", {
+        await axios.post("http://localhost:5008/admin", {
             wtype: String(inputs.wtype),
             amount: Number(inputs.amount),
             price: Number(inputs.price),

@@ -17,7 +17,7 @@ const OvertimeDisplay = () => {
 
   const fetchOvertime = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/overtime");
+      const res = await axios.get("http://localhost:5008/api/overtime");
       const data = res.data.overtime || [];
       setOvertime(data);
     } catch (err) {
@@ -37,8 +37,8 @@ const OvertimeDisplay = () => {
   // ✅ Approve + Update User overtimeStatus
   const handleApprove = async (otId, userId) => {
     try {
-      await axios.put(`http://localhost:5000/api/overtime/${otId}`, { status: "Approved" });
-      await axios.patch(`http://localhost:5000/users/update-overtime-status/${userId}`, { overtimeStatus: "Approved" });
+      await axios.put(`http://localhost:5008/api/overtime/${otId}`, { status: "Approved" });
+      await axios.patch(`http://localhost:5008/users/update-overtime-status/${userId}`, { overtimeStatus: "Approved" });
       setSuccessMessage("✅ Overtime Approved Successfully!");
       fetchOvertime();
     } catch (err) {
@@ -49,8 +49,8 @@ const OvertimeDisplay = () => {
   // ✅ Reject + Update User overtimeStatus
   const handleReject = async (otId, userId) => {
     try {
-      await axios.put(`http://localhost:5000/api/overtime/${otId}`, { status: "Rejected" });
-      await axios.patch(`http://localhost:5000/users/update-overtime-status/${userId}`, { overtimeStatus: "Rejected" });
+      await axios.put(`http://localhost:5008/api/overtime/${otId}`, { status: "Rejected" });
+      await axios.patch(`http://localhost:5008/users/update-overtime-status/${userId}`, { overtimeStatus: "Rejected" });
       setSuccessMessage("❌ Overtime Rejected Successfully!");
       fetchOvertime();
     } catch (err) {
@@ -61,7 +61,7 @@ const OvertimeDisplay = () => {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this overtime record?")) {
       try {
-        await axios.delete(`http://localhost:5000/api/overtime/${id}`);
+        await axios.delete(`http://localhost:5008/api/overtime/${id}`);
         setSuccessMessage("🗑️ Deleted Successfully!");
         fetchOvertime();
       } catch (err) {

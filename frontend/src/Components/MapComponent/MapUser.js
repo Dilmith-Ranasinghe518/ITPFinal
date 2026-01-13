@@ -23,7 +23,7 @@ const MapUser = () => {
 
   const fetchRedBins = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/getBins");
+      const response = await axios.get("http://localhost:5008/api/getBins");
       const fullBins = response.data.filter((bin) => bin.full === true);
       setRedBins(fullBins);
     } catch (error) {
@@ -34,7 +34,7 @@ const MapUser = () => {
   // ✅ Mark bin as normal and remove from redBins
   const updateBinStatus = async (id) => {
     try {
-      const response = await axios.put(`http://localhost:5000/api/updateBin/${id}`, {
+      const response = await axios.put(`http://localhost:5008/api/updateBin/${id}`, {
         full: false,
       });
 
@@ -54,7 +54,7 @@ const MapUser = () => {
     <div>
       <h2>🗺️ Full Waste Bins</h2>
 
-      <LoadScript googleMapsApiKey="AIzaSyDyH_WBDQnt9VlMYmnJ0itANXXmjaObbQI">
+      <LoadScript googleMapsApiKey="AIzaSyCQlsYyEJIRVQHAPUpvE54dtdOQNnKY3gM">
         <GoogleMap
           mapContainerStyle={containerStyle}
           center={center}

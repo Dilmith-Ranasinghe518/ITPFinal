@@ -11,7 +11,7 @@ function User(props) {
 
   const deleteHandler = async () => {
     try {
-      await axios.delete(`http://localhost:5000/users/${_id}`);
+      await axios.delete(`http://localhost:5008/users/${_id}`);
       // After deleting, navigate to the desired pages
       navigate('/'); // Navigate to the homepage (or another route if needed)
       navigate('/userdetails'); // Navigate to the user details page

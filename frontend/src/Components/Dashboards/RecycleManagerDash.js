@@ -5,9 +5,9 @@ import {
   BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer,
   PieChart, Pie, Cell
 } from 'recharts';
-import Nav4admin from './NavRecy';
 import Footer from '../Footer/Footer';
-import './RecycleManagerDash.css';
+// import Nav4admin from './NavRecy'; // Consider replacing with a modern sidebar if possible, or keeping consistent
+// import './RecycleManagerDash.css'; // Removing external CSS
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
@@ -21,7 +21,7 @@ export default function Dashboard() {
 
   const fetchRecycleData = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/recycle');
+      const response = await axios.get('http://localhost:5008/recycle');
       console.log('Fetched Recycle Data:', response.data);
 
       const rawData = response.data;
@@ -48,77 +48,106 @@ export default function Dashboard() {
   };
 
   return (
-    <div
-      className="min-h-screen p-6"
-      style={{
-        backgroundImage: "url('/j2.jpeg')",
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat'
-      }}
-    >
-      <Nav4admin />
+    <div className="flex flex-col min-h-screen bg-gray-50 pt-24 font-sans">
 
-      <h1 className="text-3xl font-bold text-green-700 mb-6">CLEAN CYCLE</h1>
+      {/* Assuming Nav4admin is the top navbar, we can keep it or replace it. 
+          For consistency with other dashboards, a sidebar is better, but this file uses Nav4admin component.
+          I will wrap the main content in a container.*/}
+      {/* <Nav4admin /> */}
+      {/* If Nav4admin is a top nav, it should be here. If it's old style, maybe better to just use a clean header */}
 
-      {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <div className="card">
-          <h2 className="text-xl font-semibold">Total Users</h2>
-          <p className="text-2xl font-bold">450</p>
+      <header className="bg-white shadow-sm py-6 px-4 md:px-8 mb-8 sticky top-0 z-30">
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
+          <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-secondary-500">
+            Clean Cycle Manager
+          </h1>
+          <div className="flex space-x-4">
+            <button onClick={() => navigate('/')} className="text-gray-600 hover:text-primary-600 font-medium">Home</button>
+            <button onClick={() => navigate('/logout')} className="text-red-500 hover:text-red-700 font-medium">Logout</button>
+          </div>
+        </div>
+      </header>
+
+
+      <main className="flex-grow max-w-7xl mx-auto px-4 md:px-8 w-full mb-12">
+
+        {/* Summary Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+          <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 transform hover:-translate-y-1 transition-transform duration-300">
+            <h2 className="text-lg font-semibold text-gray-500 mb-2">Total Users</h2>
+            <p className="text-4xl font-extrabold text-primary-600">450</p>
+          </div>
+
+          <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 transform hover:-translate-y-1 transition-transform duration-300">
+            <h2 className="text-lg font-semibold text-gray-500 mb-2">Total Collections</h2>
+            <p className="text-4xl font-extrabold text-secondary-600">
+              {groupedRecycleData.reduce((sum, item) => sum + item.quantity, 0)} <span className="text-xl text-gray-400">kg</span>
+            </p>
+          </div>
+
+          <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 transform hover:-translate-y-1 transition-transform duration-300">
+            <h2 className="text-lg font-semibold text-gray-500 mb-2">Total Earnings</h2>
+            <p className="text-4xl font-extrabold text-yellow-500">$5,200</p>
+          </div>
         </div>
 
-        <div className="card">
-          <h2 className="text-xl font-semibold">Total Collections</h2>
-          <p className="text-2xl font-bold">
-            {groupedRecycleData.reduce((sum, item) => sum + item.quantity, 0)} kg
-          </p>
+        {/* Charts Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+          {/* Bar Chart */}
+          <div className="bg-white p-8 rounded-3xl shadow-xl border border-gray-100">
+            <h2 className="text-xl font-bold text-dark-800 mb-6 flex items-center">
+              <span className="w-2 h-8 bg-primary-500 rounded-full mr-3"></span>
+              Recycled Waste Statistics
+            </h2>
+            <div className="h-80">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={groupedRecycleData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                  <XAxis dataKey="category" axisLine={false} tickLine={false} />
+                  <YAxis axisLine={false} tickLine={false} />
+                  <Tooltip
+                    contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)' }}
+                    cursor={{ fill: '#f3f4f6' }}
+                  />
+                  <Bar dataKey="quantity" fill="#22c55e" radius={[10, 10, 0, 0]} barSize={50} />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+
+          {/* Pie Chart */}
+          <div className="bg-white p-8 rounded-3xl shadow-xl border border-gray-100">
+            <h2 className="text-xl font-bold text-dark-800 mb-6 flex items-center">
+              <span className="w-2 h-8 bg-secondary-500 rounded-full mr-3"></span>
+              Waste Distribution
+            </h2>
+            <div className="h-80">
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Pie
+                    data={groupedRecycleData}
+                    dataKey="quantity"
+                    nameKey="category"
+                    cx="50%"
+                    cy="50%"
+                    innerRadius={60}
+                    outerRadius={100}
+                    paddingAngle={5}
+                    label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                  >
+                    {groupedRecycleData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} stroke="none" />
+                    ))}
+                  </Pie>
+                  <Tooltip contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)' }} />
+                  <Legend verticalAlign="bottom" height={36} />
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
         </div>
 
-        <div className="card">
-          <h2 className="text-xl font-semibold">Total Earnings</h2>
-          <p className="text-2xl font-bold">$5,200</p>
-        </div>
-      </div>
-
-      {/* Bar Chart */}
-      <div className="bg-white p-4 rounded-2xl shadow-md mb-6">
-        <h2 className="text-xl font-semibold mb-4">Recycled Waste Statistics (Bar Chart)</h2>
-        <ResponsiveContainer width="100%" height={300}>
-          <BarChart data={groupedRecycleData}>
-            <XAxis dataKey="category" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Bar dataKey="quantity" fill="#4CAF50" />
-          </BarChart>
-        </ResponsiveContainer>
-      </div>
-
-      {/* Pie Chart */}
-      <div className="bg-white p-4 rounded-2xl shadow-md mb-6">
-        <h2 className="text-xl font-semibold mb-4">Recycled Waste Distribution (Pie Chart)</h2>
-        <ResponsiveContainer width="100%" height={300}>
-          <PieChart>
-            <Pie
-              data={groupedRecycleData}
-              dataKey="quantity"
-              nameKey="category"
-              cx="50%"
-              cy="50%"
-              outerRadius={100}
-              fill="#8884d8"
-              label
-            >
-              {groupedRecycleData.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-              ))}
-            </Pie>
-            <Tooltip />
-            <Legend />
-          </PieChart>
-        </ResponsiveContainer>
-      </div>
+      </main>
 
       <Footer />
     </div>

@@ -77,7 +77,7 @@ function AddItem() {
 
   // Send request to the API
   const sendRequest = async () => {
-    await axios.post("http://localhost:5000/inventory", {
+    await axios.post("http://localhost:5008/inventory", {
       name: String(inputs.name),
       category: String(inputs.category),
       unit: String(inputs.unit),

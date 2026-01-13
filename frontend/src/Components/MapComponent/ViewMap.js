@@ -23,7 +23,7 @@ const MapComponent = () => {
   // Fetch bins from the backend
   const fetchBins = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/getBins');
+      const response = await axios.get('http://localhost:5008/api/getBins');
       setWasteBins(response.data);  // Update the state with the bins from the backend
     } catch (error) {
       console.error('Error fetching bins:', error);
@@ -35,7 +35,7 @@ const MapComponent = () => {
   const changeBinStatus = async (id) => {
     try {
       // Sending PUT request to update bin status
-      const response = await axios.put(`http://localhost:5000/api/updateBin/${id}`, { full: false });
+      const response = await axios.put(`http://localhost:5008/api/updateBin/${id}`, { full: false });
       console.log(response.data.message);
 
       // Update the bin status in the state to "normal"
@@ -71,7 +71,7 @@ const MapComponent = () => {
 
       {/* Google Map */}
       <LoadScript
-        googleMapsApiKey="AIzaSyDyH_WBDQnt9VlMYmnJ0itANXXmjaObbQI" // Add your Google Maps API key
+        googleMapsApiKey="AIzaSyCQlsYyEJIRVQHAPUpvE54dtdOQNnKY3gM" // Add your Google Maps API key
         onLoad={onGoogleMapsLoad}
       >
         <GoogleMap

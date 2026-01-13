@@ -17,7 +17,7 @@ const LeaveDisplay = () => {
 
   const fetchLeaves = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/leaves");
+      const res = await axios.get("http://localhost:5008/api/leaves");
       const data = res.data.leaves || [];
       const processedLeaves = data.map((leave) => ({
         ...leave,
@@ -41,7 +41,7 @@ const LeaveDisplay = () => {
   const handleDelete = async (id) => {
     if (window.confirm("🗑️ Are you sure you want to delete this leave request?")) {
       try {
-        await axios.delete(`http://localhost:5000/api/leaves/${id}`);
+        await axios.delete(`http://localhost:5008/api/leaves/${id}`);
         setSuccessMessage("🗑️ Leave Deleted Successfully!");
         fetchLeaves();
       } catch (error) {
@@ -56,16 +56,16 @@ const LeaveDisplay = () => {
       if (!leave) return;
 
       // Step 1: Update leave status
-      await axios.patch(`http://localhost:5000/api/leaves/${leaveId}`, { status: newStatus });
+      await axios.patch(`http://localhost:5008/api/leaves/${leaveId}`, { status: newStatus });
 
       // Step 2: Update user's leave status
-      await axios.patch(`http://localhost:5000/users/update-leave-status/${userId}`, { leaveStatus: newStatus });
+      await axios.patch(`http://localhost:5008/users/update-leave-status/${userId}`, { leaveStatus: newStatus });
 
       // Step 3: If Accepted → also update Attendance checkout time
       if (newStatus === "Accepted") {
         const checkOutTime = "14:00"; // Approved 2 PM time
 
-        await axios.patch(`http://localhost:5000/users/attendance/update-checkout-on-leave`, {
+        await axios.patch(`http://localhost:5008/users/attendance/update-checkout-on-leave`, {
           userId: leave.userId,
           date: leave.fromDate,
           checkOut: checkOutTime,

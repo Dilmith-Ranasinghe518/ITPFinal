@@ -38,7 +38,7 @@ function AdminDashboard() {
 
   const fetchEmployees = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/employees");
+      const response = await axios.get("http://localhost:5008/employees");
       setEmployees(response.data.employees || []);
     } catch (error) {
       console.error("Error fetching employees:", error);
@@ -48,7 +48,7 @@ function AdminDashboard() {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this employee?")) {
       try {
-        await axios.delete(`http://localhost:5000/employees/${id}`);
+        await axios.delete(`http://localhost:5008/employees/${id}`);
         fetchEmployees();
       } catch (error) {
         console.error("Error deleting employee:", error);

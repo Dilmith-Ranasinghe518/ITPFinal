@@ -56,7 +56,7 @@ function AddAttendance() {
     if (!validateForm()) return;
 
     try {
-      const response = await axios.post("http://localhost:5000/users", formData);
+      const response = await axios.post("http://localhost:5008/users", formData);
       alert("Attendance recorded successfully!");
       localStorage.setItem("empId", formData.Id);
       localStorage.setItem("empName", formData.name);

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Bids from '../Bids/Bids';
 import './BidDetails.css';
-const URL = "http://localhost:5000/admin";
+const URL = "http://localhost:5008/admin";
 
 const fetchHandler = async () => {
   try {

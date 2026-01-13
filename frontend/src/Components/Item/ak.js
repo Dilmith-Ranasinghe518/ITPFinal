@@ -7,7 +7,7 @@ import {
   LineChart, Line, Legend, ReferenceLine, Label
 } from 'recharts';
 
-const URL = "http://localhost:5000/invetroies";
+const URL = "http://localhost:5008/invetroies";
 
 const fetchHandler = async () => {
   return await axios.get(URL).then((res) => res.data);

@@ -12,7 +12,7 @@ function StatusForUser() {
   useEffect(() => {
     const fetchBids = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/bids');
+        const response = await axios.get('http://localhost:5008/bids');
         setBids(response.data.bids);
         setIsLoading(false);
       } catch (error) {

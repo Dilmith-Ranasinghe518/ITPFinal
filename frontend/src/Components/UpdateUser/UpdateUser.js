@@ -15,7 +15,7 @@ function UpdateUser() {
      useEffect(()=>{
         const fetchHandler = async () => {
             await axios
-            .get(`http://localhost:5000/users/${id}`)
+            .get(`http://localhost:5008/users/${id}`)
             .then((res)=> res.data)
             .then((data) => setInputs(data.user));
         };
@@ -24,7 +24,7 @@ function UpdateUser() {
 
         const sendRequest = async () => {
             await axios 
-            .put(`http://localhost:5000/users/${id}`, {
+            .put(`http://localhost:5008/users/${id}`, {
 
                 name:String (inputs.name),
                 gmail:String (inputs.gmail),

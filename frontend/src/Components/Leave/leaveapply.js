@@ -17,7 +17,7 @@ const LeaveApply = () => {
   useEffect(() => {
     async function fetchUser() {
       try {
-        const res = await axios.get("http://localhost:5000/users");
+        const res = await axios.get("http://localhost:5008/users");
         const currentUser = res.data.users[0];
         if (currentUser) {
           setUserId(currentUser._id); // IMPORTANT: _id for PATCH!
@@ -34,7 +34,7 @@ const LeaveApply = () => {
     e.preventDefault();
     try {
       // First Apply Leave in Leave Collection
-      await axios.post("http://localhost:5000/api/leaveapply", {
+      await axios.post("http://localhost:5008/api/leaveapply", {
         userId,
         phoneNumber,
         leaveType,
@@ -46,7 +46,7 @@ const LeaveApply = () => {
       });
 
       // Then Update User's Leave Status in Users Collection
-      await axios.patch(`http://localhost:5000/users/update-leave-status/${userId}`, {
+      await axios.patch(`http://localhost:5008/users/update-leave-status/${userId}`, {
         leaveStatus: "Pending",
       });
 

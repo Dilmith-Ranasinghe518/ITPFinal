@@ -9,7 +9,7 @@ function Item(props) {
   
   const deleteHandler = async () => {
     try {
-      await axios.delete(`http://localhost:5000/inventory/${_id}`);
+      await axios.delete(`http://localhost:5008/inventory/${_id}`);
       if (props.onDelete) {
         props.onDelete(_id);
       }
